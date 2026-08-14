@@ -1,0 +1,382 @@
+[
+  {
+    "id": "v1",
+    "make": "Ford",
+    "model": "Mustang GT",
+    "year": 2021,
+    "price": 36900,
+    "mileage": 18500,
+    "transmission": "Automatic",
+    "fuel": "Gasoline",
+    "engine": "5.0L V8",
+    "color": "Racing Red",
+    "interior": "Black Leather",
+    "mainImage": "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1584345604476-8ec5e12e42dd",
+    "images": [
+      "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1584345604476-8ec5e12e42dd"
+    ],
+    "features": ["Backup Camera", "Apple CarPlay / Android Auto", "Heated Seats", "Adaptive Cruise Control", "Premium Shaker Audio System"],
+    "description": "Stunning 2021 Ford Mustang GT in excellent condition. Equipped with the powerful 5.0L V8 engine producing 460 horsepower. Full service history, no accidents."
+  },
+  {
+    "id": "v2",
+    "make": "Tesla",
+    "model": "Model S Long Range",
+    "year": 2022,
+    "price": 68500,
+    "mileage": 12400,
+    "transmission": "Automatic",
+    "fuel": "Electric",
+    "engine": "Dual Motor Electric",
+    "color": "Midnight Silver",
+    "interior": "Premium White Leather",
+    "mainImage": "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1617788138017-80ad40651399",
+    "images": [
+      "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1617788138017-80ad40651399"
+    ],
+    "features": ["Enhanced Autopilot", "Panoramic Glass Roof", "Adaptive Air Suspension", "17-Inch Touchscreen"],
+    "description": "2022 Tesla Model S Long Range. An exceptional electric sedan combining cutting-edge technology, impressive range, and lightning-fast acceleration."
+  },
+  {
+    "id": "v3",
+    "make": "Toyota",
+    "model": "RAV4 Hybrid XSE",
+    "year": 2021,
+    "price": 32400,
+    "mileage": 24600,
+    "transmission": "Automatic",
+    "fuel": "Hybrid",
+    "engine": "2.5L 4-Cylinder Hybrid",
+    "color": "Magnetic Blue / Black Roof",
+    "interior": "SofTex Black/Blue",
+    "mainImage": "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1563720223185-11003d516935",
+    "images": [
+      "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1563720223185-11003d516935"
+    ],
+    "features": ["All-Wheel Drive (AWD)", "Power Sunroof", "Power Liftgate", "Toyota Safety Sense 2.0"],
+    "description": "This 2021 Toyota RAV4 Hybrid XSE offers the perfect balance of fuel economy and versatility. Sporty style with its two-tone paint."
+  },
+  {
+    "id": "v4",
+    "make": "Porsche",
+    "model": "911 Carrera S",
+    "year": 2020,
+    "price": 112000,
+    "mileage": 9800,
+    "transmission": "Automatic (PDK)",
+    "fuel": "Gasoline",
+    "engine": "3.0L Flat-6 Twin-Turbo",
+    "color": "Chalk Gray",
+    "interior": "Bordeaux Red Leather",
+    "mainImage": "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e",
+    "images": [
+      "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e"
+    ],
+    "features": ["Sport Exhaust System", "Sport Chrono Package", "20/21-Inch Carrera Classic Wheels", "Bose Surround Sound System"],
+    "description": "Absolutely magnificent Porsche 911 Carrera S (992 generation). Highly sought-after color combination, very low mileage."
+  },
+  {
+    "id": "v5",
+    "make": "Jeep",
+    "model": "Wrangler Unlimited Sahara",
+    "year": 2019,
+    "price": 34500,
+    "mileage": 41200,
+    "transmission": "Automatic",
+    "fuel": "Gasoline",
+    "engine": "3.6L V6 Pentastar",
+    "color": "Sarge Green",
+    "interior": "Premium Black Cloth",
+    "mainImage": "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1533473359331-0135ef1b58bf",
+    "images": [
+      "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1533473359331-0135ef1b58bf"
+    ],
+    "features": ["3-Piece Hard Top", "Command-Trac 4x4 System", "7-Inch Uconnect Touchscreen"],
+    "description": "Get ready for adventure with this 2019 Jeep Wrangler Sahara 4-door. Classic and robust look with its Sarge Green color."
+  },
+  {
+    "id": "v6",
+    "make": "Audi",
+    "model": "R8 V10 Performance",
+    "year": 2021,
+    "price": 158900,
+    "mileage": 5200,
+    "transmission": "Automatic (S-Tronic)",
+    "fuel": "Gasoline",
+    "engine": "5.2L V10 FSI",
+    "color": "Vegas Yellow",
+    "interior": "Black Nappa Leather with Yellow Stitching",
+    "mainImage": "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a",
+    "images": [
+      "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a"
+    ],
+    "features": ["Carbon Ceramic Breakes", "Exterior Carbon Package", "Audi Virtual Cockpit"],
+    "description": "A true daily supercar. The Audi R8 V10 Performance delivers 602 horsepower to all 4 wheels via the legendary Quattro system."
+  },
+  {
+    "id": "v7",
+    "make": "BMW",
+    "model": "M4 Competition",
+    "year": 2022,
+    "price": 74900,
+    "mileage": 11800,
+    "transmission": "Automatic",
+    "fuel": "Gasoline",
+    "engine": "3.0L Twin-Turbo Inline-6",
+    "color": "Portimao Blue",
+    "interior": "Black Merino Leather / Alcantara",
+    "mainImage": "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1555215695-3004980ad54e",
+    "images": [
+      "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1555215695-3004980ad54e"
+    ],
+    "features": ["M Carbon Bucket Seats", "Head-Up Display (HUD)", "Active M Differential"],
+    "description": "2022 BMW M4 Competition Coupe. Features the 503-horsepower twin-turbo S58 engine. Exceptional performance and precision."
+  },
+  {
+    "id": "v8",
+    "make": "Mercedes-Benz",
+    "model": "AMG GT C",
+    "year": 2019,
+    "price": 98000,
+    "mileage": 16500,
+    "transmission": "Automatic (AMG DCT)",
+    "fuel": "Gasoline",
+    "engine": "4.0L V8 Biturbo",
+    "color": "Selenite Gray Magno (Matte)",
+    "interior": "Exclusive Black Nappa Leather",
+    "mainImage": "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8",
+    "images": [
+      "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8"
+    ],
+    "features": ["Active Rear-Axle Steering", "AMG RIDE CONTROL Sport Suspension", "AMG Performance Exhaust"],
+    "description": "Splendid 2019 Mercedes-AMG GT C Edition. Original matte paint of rare elegance with a melodious V8 engine."
+  },
+  {
+    "id": "v9",
+    "make": "Honda",
+    "model": "Civic Type R",
+    "year": 2021,
+    "price": 39500,
+    "mileage": 14200,
+    "transmission": "Manual (6-Speed)",
+    "fuel": "Gasoline",
+    "engine": "2.0L Turbocharged 4-Cylinder",
+    "color": "Championship White",
+    "interior": "Type R Red/Black Sport Fabric",
+    "mainImage": "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1590362891991-f776e747a588",
+    "images": [
+      "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1590362891991-f776e747a588"
+    ],
+    "features": ["Adaptive Damper System", "Helical Limited-Slip Differential", "Brembo Brakes"],
+    "description": "2021 Honda Civic Type R Limited Edition in the iconic Championship White color. Fully original, very well maintained."
+  },
+  {
+    "id": "v10",
+    "make": "Land Rover",
+    "model": "Defender 110 P400 SE",
+    "year": 2022,
+    "price": 72000,
+    "mileage": 22000,
+    "transmission": "Automatic",
+    "fuel": "Mild Hybrid (MHEV)",
+    "engine": "3.0L Turbocharged I6 MHEV",
+    "color": "Eiger Gray",
+    "interior": "Black Windsor Leather",
+    "mainImage": "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1549399542-7e3f8b79c341",
+    "images": [
+      "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1549399542-7e3f8b79c341"
+    ],
+    "features": ["Electronic Air Suspension", "Sliding Panoramic Roof", "3D Surround Camera"],
+    "description": "The Land Rover Defender 110 combines exceptional on-road driving comfort with legendary off-road capabilities."
+  },
+  {
+    "id": "v11",
+    "make": "Dodge",
+    "model": "Challenger SRT Hellcat",
+    "year": 2020,
+    "price": 64900,
+    "mileage": 15300,
+    "transmission": "Automatic (8-Speed)",
+    "fuel": "Gasoline",
+    "engine": "6.2L Supercharged V8 Hemi",
+    "color": "Pitch Black",
+    "interior": "Black SRT Alcantara Leather",
+    "mainImage": "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5",
+    "images": [
+      "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5"
+    ],
+    "features": ["717 HP Hellcat Engine", "SRT Adaptive Bilstein Suspension", "Brembo High Performance Brakes"],
+    "description": "2020 Dodge Challenger SRT Hellcat. The ultimate American muscle car with 717 horsepower of raw power."
+  },
+  {
+    "id": "v12",
+    "make": "Subaru",
+    "model": "WRX STI Limited",
+    "year": 2020,
+    "price": 38800,
+    "mileage": 28900,
+    "transmission": "Manual (6-Speed)",
+    "fuel": "Gasoline",
+    "engine": "2.5L Turbocharged Boxer 4",
+    "color": "WR Blue",
+    "interior": "Black Recaro Leather/Red UltraSuede",
+    "mainImage": "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1503376780353-7e6692767b70",
+    "images": [
+      "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1503376780353-7e6692767b70"
+    ],
+    "features": ["Subaru Symmetrical AWD", "Driver Controlled Center Differential", "STI High Rear Wing Spoiler"],
+    "description": "The last year of production for the legendary WRX STI with the EJ25 Boxer engine in iconic WR Blue paint."
+  },
+  {
+    "id": "v13",
+    "make": "Chevrolet",
+    "model": "Corvette Stingray 2LT",
+    "year": 2021,
+    "price": 79900,
+    "mileage": 8200,
+    "transmission": "Automatic (Dual-Clutch)",
+    "fuel": "Gasoline",
+    "engine": "6.2L V8 LT2",
+    "color": "Arctic White",
+    "interior": "Adrenaline Red Leather",
+    "mainImage": "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1552519507-da3b142c6e3d",
+    "images": [
+      "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1552519507-da3b142c6e3d"
+    ],
+    "features": ["Z51 Performance Package", "Head-Up Display", "Performance Data Recorder"],
+    "description": "Mid-engine Corvette C8 Stingray. Highly equipped 2LT trim with the Z51 performance package."
+  },
+  {
+    "id": "v14",
+    "make": "Mazda",
+    "model": "MX-5 Miata Club",
+    "year": 2021,
+    "price": 27500,
+    "mileage": 16900,
+    "transmission": "Manual (6-Speed)",
+    "fuel": "Gasoline",
+    "engine": "2.0L 4-Cylinder SkyActiv-G",
+    "color": "Polymetal Gray",
+    "interior": "Black Club Cloth",
+    "mainImage": "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1562141961-b5d1852deee1",
+    "images": [
+      "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1562141961-b5d1852deee1"
+    ],
+    "features": ["Bilstein Sport Shocks", "Limited-Slip Differential", "17-Inch Dark Alloy Wheels"],
+    "description": "The ultimate roadster. This 2021 Mazda MX-5 Miata Club offers unmatched driving pleasure."
+  },
+  {
+    "id": "v15",
+    "make": "Lexus",
+    "model": "LC 500 Performance",
+    "year": 2021,
+    "price": 84000,
+    "mileage": 14500,
+    "transmission": "Automatic (10-Speed)",
+    "fuel": "Gasoline",
+    "engine": "5.0L Naturally Aspirated V8",
+    "color": "Infrared Red",
+    "interior": "Black Alcantara/Leather",
+    "mainImage": "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1616422285623-13ff0162193c",
+    "images": [
+      "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1616422285623-13ff0162193c"
+    ],
+    "features": ["Active Carbon Rear Spoiler", "Carbon Fiber Roof", "21-Inch Forged Wheels"],
+    "description": "Lexus LC 500 grand touring coupe. Powered by a majestic-sounding 5.0L naturally aspirated V8."
+  },
+  {
+    "id": "v16",
+    "make": "Ford",
+    "model": "F-150 Raptor",
+    "year": 2020,
+    "price": 59500,
+    "mileage": 39800,
+    "transmission": "Automatic (10-Speed)",
+    "fuel": "Gasoline",
+    "engine": "3.5L Twin-Turbo EcoBoost V6",
+    "color": "Ford Performance Blue",
+    "interior": "Black Leather/Alcantara with Blue Accents",
+    "mainImage": "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1583121274602-3e2820c69888",
+    "images": [
+      "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1583121274602-3e2820c69888"
+    ],
+    "features": ["Fox Racing Live Valve Shocks", "Terrain Management System", "360-Degree Camera View"],
+    "description": "The ultimate off-road pickup. This 2020 Ford F-150 Raptor in Ford Performance Blue produces 450 horsepower."
+  },
+  {
+    "id": "v17",
+    "make": "Toyota",
+    "model": "Supra 3.0 Premium",
+    "year": 2021,
+    "price": 49900,
+    "mileage": 13200,
+    "transmission": "Automatic (8-Speed)",
+    "fuel": "Gasoline",
+    "engine": "3.0L Twin-Scroll Turbo I6",
+    "color": "Nitro Yellow",
+    "interior": "Black Leather Sport",
+    "mainImage": "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1617814076367-b759c7d7e738",
+    "images": [
+      "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1617814076367-b759c7d7e738"
+    ],
+    "features": ["Head-Up Display (HUD)", "Red Brembo Sport Brakes", "Adaptive Variable Suspension"],
+    "description": "2021 Toyota GR Supra 3.0 Premium. 382-horsepower turbocharged inline-6 engine. Extremely fun to drive."
+  },
+  {
+    "id": "v18",
+    "make": "Porsche",
+    "model": "Macan GTS",
+    "year": 2021,
+    "price": 69900,
+    "mileage": 26100,
+    "transmission": "Automatic (PDK)",
+    "fuel": "Gasoline",
+    "engine": "2.9L Twin-Turbo V6",
+    "color": "Deep Black Metallic",
+    "interior": "GTS Black Alcantara/Leather with Red Stitching",
+    "mainImage": "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1503376780353-7e6692767b70",
+    "images": [
+      "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1503376780353-7e6692767b70"
+    ],
+    "features": ["Adaptive Air Suspension with PASM", "Sport Exhaust with Black Tailpipes", "21-Inch RS Spyder Design Wheels"],
+    "description": "2021 Porsche Macan GTS. High-performance compact SUV combining family space and Porsche's legendary dynamics."
+  },
+  {
+    "id": "v19",
+    "make": "Tesla",
+    "model": "Model Y Performance",
+    "year": 2022,
+    "price": 48900,
+    "mileage": 17200,
+    "transmission": "Automatic",
+    "fuel": "Electric",
+    "engine": "Dual Motor Electric",
+    "color": "Pearl White Multi-Coat",
+    "interior": "Premium Black Leather",
+    "mainImage": "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1563720223185-11003d516935",
+    "images": [
+      "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1563720223185-11003d516935"
+    ],
+    "features": ["Performance Brakes", "21-Inch Uberturbine Wheels", "Carbon Fiber Spoiler"],
+    "description": "2022 Tesla Model Y Performance. Accelerates from 0 to 60 mph in just 3.5 seconds. Pearl White paint."
+  },
+  {
+    "id": "v20",
+    "make": "Chevrolet",
+    "model": "Camaro SS 1LE",
+    "year": 2020,
+    "price": 43500,
+    "mileage": 20300,
+    "transmission": "Manual (6-Speed)",
+    "fuel": "Gasoline",
+    "engine": "6.2L V8 DI LT1",
+    "color": "Shadow Gray Metallic",
+    "interior": "Recaro Black Alcantara",
+    "mainImage": "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1552519507-88148b493b0f",
+    "images": [
+      "https://res.cloudinary.com/fe55mqsh/image/fetch/f_auto,q_auto,w_800/https://images.unsplash.com/photo-1552519507-88148b493b0f"
+    ],
+    "features": ["1LE Track Performance Package", "Magnetic Ride Control Suspension", "Front Brembo 6-Piston Brakes"],
+    "description": "2020 Chevrolet Camaro SS with the 1LE track performance package. Equipped with 6-speed manual gearbox."
+  }
+]
