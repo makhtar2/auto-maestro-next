@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
+import Link from 'next/link';
 
 export default function CatalogWrapper({ initialVehicles = [] }) {
   const [vehicles, setVehicles] = useState(initialVehicles);
@@ -451,6 +452,8 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
                           e.target.src = 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&auto=format&fit=crop&q=80';
                         }}
                       />
+                      <span className="card-year-badge">{car.year}</span>
+                      <span className="card-price-pill">${car.price.toLocaleString()}</span>
                       <button 
                         className={`card-fav-btn ${isFavorited ? 'active' : ''}`}
                         onClick={(e) => handleToggleCompare(car, e)}
@@ -463,48 +466,43 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
                     </div>
 
                     <div className="card-body-content">
-                      <h3 className="card-title-text">{car.year} {car.make} {car.model}</h3>
-                      <div className="card-subtitle-text">{car.engine || 'Certified Package'}</div>
-                      <div className="card-price-text">${car.price.toLocaleString()}</div>
+                      <div className="card-make-tag">{car.make}</div>
+                      <h3 className="card-title-text">{car.model}</h3>
+                      <div className="card-subtitle-text">{car.engine || 'Certified Performance Package'}</div>
 
-                      <div className="card-specs-row">
-                        <div className="card-spec-item">
-                          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="card-specs-pills-row">
+                        <span className="spec-pill-item">
+                          <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                           </svg>
-                          <span>{car.mileage.toLocaleString()} mi</span>
-                        </div>
-                        <div className="card-spec-item">
-                          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-                          </svg>
-                          <span>{car.transmission}</span>
-                        </div>
-                        <div className="card-spec-item">
-                          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
-                          </svg>
-                          <span>{car.fuel}</span>
-                        </div>
-                      </div>
-
-                      <div className="card-location-row">
-                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-                          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                          </svg>
-                          In Stock & Verified
+                          {car.mileage.toLocaleString()} mi
                         </span>
-                        <span style={{ color: '#10B981', fontWeight: '700' }}>In Stock</span>
+                        <span className="spec-pill-item">
+                          <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+                          </svg>
+                          {car.transmission}
+                        </span>
+                        <span className="spec-pill-item">
+                          <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/>
+                          </svg>
+                          {car.fuel}
+                        </span>
                       </div>
 
-                      <button 
-                        onClick={() => openModal(car)}
-                        className="btn-card-action"
-                      >
-                        View Details
-                      </button>
+                      <div className="card-footer-action-row">
+                        <Link 
+                          href={`/vehicles/${car.id}`}
+                          className="btn-card-action-modern"
+                          style={{ width: '100%', justifyContent: 'center' }}
+                        >
+                          View Details
+                          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7"/>
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 );
@@ -543,8 +541,8 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
               </svg>
             </button>
             
-            <div style={{ padding: '32px' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px', marginBottom: '32px' }}>
+            <div className="modal-body-wrapper">
+              <div className="modal-top-grid">
                 <div>
                   <img 
                     src={selectedCar.images && selectedCar.images[activeImgIndex] ? selectedCar.images[activeImgIndex] : (selectedCar.mainImage || 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&auto=format&fit=crop&q=80')} 
@@ -554,10 +552,10 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
                       e.target.onerror = null;
                       e.target.src = 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&auto=format&fit=crop&q=80';
                     }}
-                    style={{ width: '100%', height: '320px', objectFit: 'cover', borderRadius: 'var(--radius)', marginBottom: '12px' }}
+                    className="modal-vehicle-img"
                   />
                   {selectedCar.images && selectedCar.images.length > 1 && (
-                    <div style={{ display: 'flex', gap: '8px', overflowX: 'auto' }}>
+                    <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '4px' }}>
                       {selectedCar.images.map((img, idx) => (
                         <img 
                           key={idx} 
@@ -571,6 +569,7 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
                             objectFit: 'cover',
                             borderRadius: '4px',
                             cursor: 'pointer',
+                            flexShrink: 0,
                             border: activeImgIndex === idx ? '2px solid var(--primary)' : '1px solid var(--border)'
                           }}
                         />
@@ -583,14 +582,14 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
                   <span style={{ fontSize: '0.8rem', fontWeight: '700', textTransform: 'uppercase', color: 'var(--primary)', letterSpacing: '1px' }}>
                     {selectedCar.year} {selectedCar.make}
                   </span>
-                  <h2 style={{ fontFamily: 'var(--font-title)', fontSize: '2rem', fontWeight: '800', margin: '4px 0 12px 0' }}>
+                  <h2 style={{ fontFamily: 'var(--font-title)', fontSize: '1.8rem', fontWeight: '800', margin: '4px 0 12px 0', lineHeight: '1.2' }}>
                     {selectedCar.model}
                   </h2>
-                  <div style={{ fontSize: '1.8rem', fontWeight: '800', color: 'var(--primary)', marginBottom: '20px' }}>
+                  <div style={{ fontSize: '1.75rem', fontWeight: '800', color: 'var(--primary)', marginBottom: '16px' }}>
                     ${selectedCar.price.toLocaleString()}
                   </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px', padding: '16px', backgroundColor: 'var(--bg-surface-alt)', borderRadius: 'var(--radius-sm)', marginBottom: '20px', fontSize: '0.85rem' }}>
+                  <div className="modal-specs-grid">
                     <div><strong>Mileage:</strong> {selectedCar.mileage.toLocaleString()} mi</div>
                     <div><strong>Engine:</strong> {selectedCar.engine || 'V6 Turbo'}</div>
                     <div><strong>Transmission:</strong> {selectedCar.transmission}</div>
@@ -599,18 +598,18 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
                     <div><strong>Stock #:</strong> {selectedCar.stockNumber || `AM-${selectedCar.id}`}</div>
                   </div>
 
-                  <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>
+                  <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>
                     {selectedCar.description || 'Pre-owned vehicle in pristine condition. Certified by Auto Maestro technicians.'}
                   </p>
                 </div>
               </div>
 
               {/* Inquiry / Order Form */}
-              <div style={{ backgroundColor: 'var(--bg-body)', padding: '24px', borderRadius: 'var(--radius)', border: '1px solid var(--border)' }}>
-                <h3 style={{ fontFamily: 'var(--font-title)', fontSize: '1.2rem', fontWeight: '800', marginBottom: '16px' }}>
+              <div className="modal-form-box">
+                <h3 style={{ fontFamily: 'var(--font-title)', fontSize: '1.1rem', fontWeight: '800', marginBottom: '14px' }}>
                   Request Information / Schedule Test Drive
                 </h3>
-                <form onSubmit={handleInquirySubmit} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                <form onSubmit={handleInquirySubmit} className="modal-form-grid">
                   <input 
                     type="text" 
                     placeholder="Your Full Name *" 
@@ -638,14 +637,15 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
                     type="text" 
                     disabled 
                     value={`Vehicle: ${selectedCar.year} ${selectedCar.make} ${selectedCar.model}`} 
-                    style={{ padding: '10px 14px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border)', backgroundColor: '#E2E8F0', opacity: 0.8 }}
+                    style={{ padding: '10px 14px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border)', backgroundColor: 'var(--bg-surface-alt)', opacity: 0.8 }}
                   />
                   <textarea 
                     placeholder="Message / Special Requests" 
                     value={inquiryMsg}
                     onChange={(e) => setInquiryMsg(e.target.value)}
                     rows="3"
-                    style={{ gridColumn: '1 / -1', padding: '10px 14px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border)', outline: 'none' }}
+                    className="modal-form-full"
+                    style={{ padding: '10px 14px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border)', outline: 'none' }}
                   ></textarea>
 
                   <button 
