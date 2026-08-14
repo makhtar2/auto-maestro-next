@@ -1,43 +1,43 @@
 import './globals.css';
 
 export const metadata = {
-  title: "AUTO MAESTRO LLC | Premium Automobile Catalog",
-  description: "Explore the exclusive inventory of premium vehicles at AUTO MAESTRO LLC. Luxury sedans, sport cars, and hybrid/electric SUVs at the best value. Rigid technical inspection and high-end services.",
-  keywords: "Auto Maestro, premium car, luxury sedan, sports car, luxury vehicles, automobile dealer",
+  metadataBase: new URL('https://auto-maestro-next.vercel.app'),
+  title: "AUTO MAESTRO LLC | Véhicules de Prestige & Sport",
+  description: "Découvrez le catalogue exclusif de véhicules certifiés et de prestige chez AUTO MAESTRO LLC. Berlines de luxe, sportives et SUV haut de gamme.",
+  keywords: "Auto Maestro, véhicules de prestige, berline de luxe, voiture de sport, concessionnaire automobile",
   authors: [{ name: "Makhtar Wade" }],
   robots: {
     index: true,
     follow: true,
-    nocache: false,
     googleBot: {
       index: true,
       follow: true,
-      noimageindex: false,
       'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
   },
   openGraph: {
-    title: "AUTO MAESTRO LLC | Premium Automobile Catalog",
-    description: "Browse our exclusive catalog of hand-picked premium vehicles.",
-    url: 'https://automaestro.com',
-    siteName: 'Auto Maestro LLC',
+    title: "AUTO MAESTRO LLC | Véhicules de Prestige & Sport",
+    description: "Découvrez notre inventaire exclusif de véhicules de prestige et de sport inspectés et certifiés.",
+    url: 'https://auto-maestro-next.vercel.app',
+    siteName: 'AUTO MAESTRO LLC',
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&h=630&q=80',
+        url: '/hero-custom.jpg',
         width: 1200,
         height: 630,
+        alt: 'AUTO MAESTRO LLC Premium Fleet',
       },
     ],
-    locale: 'en_US',
+    locale: 'fr_FR',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: "AUTO MAESTRO LLC | Premium Automobile Catalog",
-    description: "Our live premium vehicle catalog.",
-    images: ['https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&h=630&q=80'],
+    title: "AUTO MAESTRO LLC | Véhicules de Prestige & Sport",
+    description: "Découvrez notre catalogue exclusif de véhicules haut de gamme.",
+    images: ['/hero-custom.jpg'],
   },
 };
 
