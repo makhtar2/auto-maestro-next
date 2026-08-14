@@ -1,11 +1,21 @@
 import CatalogWrapper from './components/CatalogWrapper';
 import ContactForm from './components/ContactForm';
 import { readVehicles } from '../lib/db-helper';
+import fs from 'fs';
+import path from 'path';
 
 // Force dynamic rendering so modifications in /admin are immediate
 export const revalidate = 0;
 
 export default function Home() {
+  try {
+    const src = '/home/almuxtaar/.gemini/antigravity/brain/9506d595-cf6d-4390-a261-dd6c79c5e0d0/.tempmediaStorage/media_9506d595-cf6d-4390-a261-dd6c79c5e0d0_1786738869211.jpg';
+    const dest = path.join(process.cwd(), 'public', 'hero-custom.jpg');
+    if (fs.existsSync(src)) {
+      fs.copyFileSync(src, dest);
+    }
+  } catch (e) {}
+
   let vehicles = [];
   try {
     vehicles = readVehicles();

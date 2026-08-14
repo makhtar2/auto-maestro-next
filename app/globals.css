@@ -3,30 +3,35 @@
 
 /* Auto Maestro & DriveNest Modern UX/UI Token System */
 :root {
-  --primary: #1D61E7; /* Electric Blue */
+  --primary: #1D61E7;
+  /* Electric Blue */
   --primary-hover: #154EC2;
   --primary-light: rgba(29, 97, 231, 0.08);
-  
+
   --accent: #F59E0B;
-  
-  --bg-body: #F8FAFC; /* Slate 50 */
+
+  --bg-body: #F8FAFC;
+  /* Slate 50 */
   --bg-surface: #FFFFFF;
   --bg-surface-alt: #F1F5F9;
-  
+
   --border: #E2E8F0;
   --border-hover: #CBD5E1;
-  
-  --text-main: #0F172A; /* Slate 900 */
-  --text-muted: #475569; /* Slate 600 */
-  --text-dim: #94A3B8; /* Slate 400 */
-  
+
+  --text-main: #0F172A;
+  /* Slate 900 */
+  --text-muted: #475569;
+  /* Slate 600 */
+  --text-dim: #94A3B8;
+  /* Slate 400 */
+
   --font-title: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  
+
   --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.06);
   --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
   --shadow-lg: 0 20px 30px -10px rgba(15, 23, 42, 0.08), 0 10px 15px -5px rgba(15, 23, 42, 0.04);
-  
+
   --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   --radius-sm: 8px;
   --radius: 12px;
@@ -35,7 +40,9 @@
 }
 
 /* Base Resets */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -151,17 +158,17 @@ header#mainHeader {
 .hero-bg-blur-image {
   position: absolute;
   inset: -20px;
-  background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2000&q=80');
+  background-image: url('/hero-custom.jpg'), url('https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=2400&q=85');
   background-size: cover;
   background-position: center;
-  filter: blur(10px) brightness(0.45);
-  transform: scale(1.08);
+  filter: blur(8px) brightness(0.85);
+  transform: scale(1.06);
 }
 
 .hero-bg-blur-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0.6) 0%, rgba(15, 23, 42, 0.8) 100%);
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.4) 0%, rgba(15, 23, 42, 0.7) 100%);
 }
 
 .hero-content-relative {
@@ -317,7 +324,7 @@ header#mainHeader {
   .search-console-grid {
     grid-template-columns: 1fr 1fr;
   }
-  
+
   .btn-console-submit {
     grid-column: 1 / -1;
     width: 100%;
@@ -1314,6 +1321,7 @@ footer {
     transform: translateY(100%);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -1324,7 +1332,7 @@ footer {
   .admin-modal-form {
     grid-template-columns: 1fr;
   }
-  
+
   .admin-header {
     flex-direction: column;
     align-items: flex-start;
@@ -1660,7 +1668,8 @@ footer {
   pointer-events: none;
 }
 
-.image-counter-pill, .zoom-hint-pill {
+.image-counter-pill,
+.zoom-hint-pill {
   background-color: rgba(15, 23, 42, 0.75);
   backdrop-filter: blur(8px);
   color: #fff;
@@ -2035,7 +2044,8 @@ footer {
   color: var(--text-main);
 }
 
-.form-group-modern input, .form-group-modern select {
+.form-group-modern input,
+.form-group-modern select {
   padding: 10px 14px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
@@ -2045,7 +2055,8 @@ footer {
   outline: none;
 }
 
-.form-group-modern input:focus, .form-group-modern select:focus {
+.form-group-modern input:focus,
+.form-group-modern select:focus {
   border-color: var(--primary);
 }
 
@@ -2104,7 +2115,7 @@ footer {
   position: absolute;
   top: 24px;
   right: 24px;
-  background: rgba(255,255,255,0.2);
+  background: rgba(255, 255, 255, 0.2);
   border: none;
   color: #fff;
   width: 44px;
@@ -2121,7 +2132,7 @@ footer {
   max-height: 85vh;
   object-fit: contain;
   border-radius: var(--radius);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 }
 
 /* MEDIA QUERIES FOR DETAIL PAGE REDESIGN */
@@ -2186,11 +2197,8 @@ footer {
     width: 100%;
   }
 
-  .btn-action-primary, .btn-action-outline {
+  .btn-action-primary,
+  .btn-action-outline {
     flex: 1;
   }
 }
-
-
-
-
