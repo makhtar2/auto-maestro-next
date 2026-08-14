@@ -318,71 +318,7 @@ export default function DetailGalleryAndCalculator({ car }) {
             </div>
           </div>
 
-          {/* 3. INTERACTIVE FINANCING CALCULATOR */}
-          <div className="modern-calculator-card">
-            <div className="calc-header-row">
-              <div>
-                <h3>Financing Calculator</h3>
-                <p>Customize your down payment and interest rate to estimate your monthly plan.</p>
-              </div>
-              <div className="calc-result-pill">
-                <span className="lbl">Est. Payment</span>
-                <span className="val">${monthlyPayment.toLocaleString()}<small>/mo</small></span>
-              </div>
-            </div>
-
-            <div className="calc-controls-grid">
-              
-              {/* Down Payment Slider */}
-              <div className="calc-input-group">
-                <div className="group-label-row">
-                  <label>Down Payment</label>
-                  <span className="accent-val">${downPayment.toLocaleString()} ({Math.round((downPayment / car.price) * 100)}%)</span>
-                </div>
-                <input 
-                  type="range" 
-                  min={0} 
-                  max={car.price} 
-                  step={500}
-                  value={downPayment}
-                  onChange={(e) => setDownPayment(parseInt(e.target.value) || 0)}
-                  className="modern-range-slider"
-                />
-              </div>
-
-              {/* Loan Term Selector Chips */}
-              <div className="calc-input-group">
-                <label>Loan Term</label>
-                <div className="term-chips-row">
-                  {[24, 36, 48, 60, 72].map((months) => (
-                    <button
-                      key={months}
-                      type="button"
-                      className={`term-chip ${loanTerm === months ? 'active' : ''}`}
-                      onClick={() => setLoanTerm(months)}
-                    >
-                      {months} Mo
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Interest Rate Input */}
-              <div className="calc-input-group">
-                <label>Annual Interest Rate (APR %)</label>
-                <input 
-                  type="number" 
-                  step="0.1" 
-                  min={0} 
-                  max={25}
-                  value={interestRate}
-                  onChange={(e) => setInterestRate(parseFloat(e.target.value) || 0)}
-                  className="modern-form-input"
-                />
-              </div>
-
-            </div>
-          </div>
+          {/* END TABS CONTAINER */}
 
         </div>
 
