@@ -129,7 +129,7 @@ export default function ContactForm() {
             <option value="General Inquiry">General Inquiry</option>
             <option value="Schedule Test Drive">Schedule a Test Drive</option>
             <option value="Trade-in Estimate">Vehicle Trade-in Estimate</option>
-            <option value="Financing & Purchasing">Financing & Purchasing</option>
+            <option value="Purchase Inquiry">Purchase Inquiry</option>
           </select>
         </div>
       </div>

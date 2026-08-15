@@ -14,7 +14,7 @@ export default function SiteFooter({ variant = 'home' }) {
           <Link href={logoHref} className="logo-container">
             <img src="/logo-white.svg" alt="AUTO MAESTRO LLC Logo" className="brand-logo-img" />
           </Link>
-          <p>AUTO MAESTRO LLC is your trusted partner for buying, selling, and financing your next premium or sports vehicle. All our vehicles are meticulously inspected.</p>
+          <p>AUTO MAESTRO LLC is your trusted partner for buying and selling your next premium or sports vehicle. All our vehicles are meticulously inspected.</p>
         </div>
         <div className="footer-links-col">
           <h4>Navigation</h4>

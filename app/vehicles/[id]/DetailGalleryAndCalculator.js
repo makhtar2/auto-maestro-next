@@ -1,17 +1,11 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export default function DetailGalleryAndCalculator({ car }) {
   const [activeImgIndex, setActiveImgIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('specs'); // 'specs', 'description', 'features'
-
-  // Financing Calculator States
-  const [downPayment, setDownPayment] = useState(Math.round(car.price * 0.1)); // Default 10% down
-  const [loanTerm, setLoanTerm] = useState(60); // Default 60 months
-  const [interestRate, setInterestRate] = useState(5.9); // Default 5.9% interest
-  const [monthlyPayment, setMonthlyPayment] = useState(0);
 
   // Booking Form States
   const [userName, setUserName] = useState('');
@@ -22,23 +16,6 @@ export default function DetailGalleryAndCalculator({ car }) {
   const [toast, setToast] = useState({ show: false, error: false, message: '' });
 
   const allImages = car.images && car.images.length > 0 ? car.images : [car.mainImage];
-
-  // Calculate Loan Payment
-  useEffect(() => {
-    const principal = car.price - downPayment;
-    if (principal <= 0) {
-      setMonthlyPayment(0);
-      return;
-    }
-    const monthlyRate = (interestRate / 100) / 12;
-    if (monthlyRate === 0) {
-      setMonthlyPayment(Math.round(principal / loanTerm));
-      return;
-    }
-    const payment = (principal * monthlyRate * Math.pow(1 + monthlyRate, loanTerm)) / 
-                    (Math.pow(1 + monthlyRate, loanTerm) - 1);
-    setMonthlyPayment(Math.round(payment));
-  }, [downPayment, loanTerm, interestRate, car.price]);
 
   const triggerToast = (message, isError = false) => {
     setToast({ show: true, error: isError, message });
@@ -66,7 +43,7 @@ export default function DetailGalleryAndCalculator({ car }) {
           vehicleName: `${car.year} ${car.make} ${car.model}`,
           date: bookingDate,
           time: bookingTime,
-          message: `Scheduled test drive booking request. Est payment: $${monthlyPayment}/mo.`
+          message: `Scheduled test drive booking request.`
         })
       });
 
@@ -296,7 +273,7 @@ export default function DetailGalleryAndCalculator({ car }) {
               {activeTab === 'description' && (
                 <div className="description-prose">
                   <h3>Professional Overview</h3>
-                  <p>{car.description || 'This vehicle has undergone a rigorous multi-point inspection by Auto Maestro certified technicians. Clean title guaranteed with available financing options.'}</p>
+                  <p>{car.description || 'This vehicle has undergone a rigorous multi-point inspection by Auto Maestro certified technicians. Clean title guaranteed.'}</p>
                 </div>
               )}
 

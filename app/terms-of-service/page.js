@@ -3,7 +3,7 @@ import SiteFooter from '../components/SiteFooter';
 
 export const metadata = {
   title: 'Terms of Service | Auto Maestro LLC',
-  description: 'Terms of service for scheduling test drives, requesting quotes, and financing estimates through Auto Maestro LLC.',
+  description: 'Terms of service for scheduling test drives and requesting quotes through Auto Maestro LLC.',
 };
 
 export default function TermsOfServicePage() {
@@ -23,27 +23,22 @@ export default function TermsOfServicePage() {
             </section>
 
             <section>
-              <h2 className="font-title text-xl font-bold mb-2">2. Financing Estimates</h2>
-              <p>Any monthly payment or financing figures shown on this site are estimates only, based on the inputs provided, and do not constitute a loan offer. Final financing terms are subject to credit approval and lender conditions.</p>
-            </section>
-
-            <section>
-              <h2 className="font-title text-xl font-bold mb-2">3. Vehicle Availability</h2>
+              <h2 className="font-title text-xl font-bold mb-2">2. Vehicle Availability</h2>
               <p>Inventory listed on this site is subject to prior sale. Submitting an inquiry does not reserve a vehicle unless confirmed in writing by our sales team.</p>
             </section>
 
             <section>
-              <h2 className="font-title text-xl font-bold mb-2">4. Accuracy of Information</h2>
+              <h2 className="font-title text-xl font-bold mb-2">3. Accuracy of Information</h2>
               <p>While we strive for accuracy, occasional errors in pricing, specifications, or availability may occur. We reserve the right to correct any such errors.</p>
             </section>
 
             <section>
-              <h2 className="font-title text-xl font-bold mb-2">5. Changes to These Terms</h2>
+              <h2 className="font-title text-xl font-bold mb-2">4. Changes to These Terms</h2>
               <p>We may update these terms from time to time. Continued use of the site after changes are posted constitutes acceptance of the updated terms.</p>
             </section>
 
             <section>
-              <h2 className="font-title text-xl font-bold mb-2">6. Contact</h2>
+              <h2 className="font-title text-xl font-bold mb-2">5. Contact</h2>
               <p>For questions about these terms, contact us at <a href="mailto:contact@automaestro.com" className="text-primary underline">contact@automaestro.com</a>.</p>
             </section>
           </div>
