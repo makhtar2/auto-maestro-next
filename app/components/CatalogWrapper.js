@@ -242,23 +242,8 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
     <>
       {/* Toast Notification */}
       {toast.show && (
-        <div style={{
-          position: 'fixed',
-          bottom: '24px',
-          right: '24px',
-          zIndex: 2000,
-          backgroundColor: toast.error ? '#EF4444' : '#10B981',
-          color: '#FFFFFF',
-          padding: '14px 20px',
-          borderRadius: 'var(--radius-sm)',
-          boxShadow: 'var(--shadow-lg)',
-          fontWeight: '600',
-          fontSize: '0.9rem',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '10px'
-        }}>
-          <span style={{ display: 'inline-flex', alignItems: 'center' }}>
+        <div className={`fixed bottom-6 right-6 z-[2000] rounded-sm shadow-lg font-semibold text-[0.9rem] text-white flex items-center gap-2.5 py-3.5 px-5 ${toast.error ? 'bg-red-500' : 'bg-emerald-500'}`}>
+          <span className="inline-flex items-center">
             {toast.error ? (
               <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
@@ -280,7 +265,7 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
           <div className="hero-bg-blur-overlay"></div>
         </div>
 
-        <div className="container hero-content-relative" style={{ textAlign: 'center' }}>
+        <div className="container hero-content-relative text-center">
           <h1 className="hero-dream-title">
             Find Your Dream Car
           </h1>
@@ -393,14 +378,14 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
           <div className="section-header-row">
             <div>
               <h2 className="section-title-main">Featured Listings</h2>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', marginTop: '4px' }}>
+              <p className="text-text-muted text-[0.95rem] mt-1">
                 Explore certified vehicles available for immediate delivery.
               </p>
             </div>
           </div>
 
           {/* Sub-Category Pills */}
-          <div className="category-tabs-container" style={{ marginBottom: '32px' }}>
+          <div className="category-tabs-container mb-8">
             <ul className="category-tabs">
               <li 
                 className={`category-tab ${activeCategory === 'all' ? 'active' : ''}`}
@@ -492,10 +477,9 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
                       </div>
 
                       <div className="card-footer-action-row">
-                        <Link 
+                        <Link
                           href={`/vehicles/${car.id}`}
-                          className="btn-card-action-modern"
-                          style={{ width: '100%', justifyContent: 'center' }}
+                          className="btn-card-action-modern w-full justify-center"
                         >
                           View Details
                           <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -508,10 +492,10 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
                 );
               })
             ) : (
-              <div className="no-results" style={{ gridColumn: '1 / -1', padding: '60px 24px', textAlign: 'center' }}>
+              <div className="no-results col-span-full text-center py-16 px-6">
                 <h3>No Vehicles Found</h3>
                 <p>Try clearing your active filters to see all available inventory.</p>
-                <button 
+                <button
                   onClick={() => {
                     setActiveCategory('all');
                     setFilterMake('');
@@ -520,8 +504,7 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
                     setFilterPrice('');
                     setFilterMileage('');
                   }}
-                  className="btn-hero-primary"
-                  style={{ margin: '0 auto', display: 'inline-flex' }}
+                  className="btn-hero-primary mx-auto inline-flex"
                 >
                   Reset All Filters
                 </button>
@@ -555,23 +538,15 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
                     className="modal-vehicle-img"
                   />
                   {selectedCar.images && selectedCar.images.length > 1 && (
-                    <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '4px' }}>
+                    <div className="flex gap-2 overflow-x-auto pb-1">
                       {selectedCar.images.map((img, idx) => (
-                        <img 
-                          key={idx} 
-                          src={img} 
-                          alt="thumb" 
+                        <img
+                          key={idx}
+                          src={img}
+                          alt="thumb"
                           referrerPolicy="no-referrer"
                           onClick={() => setActiveImgIndex(idx)}
-                          style={{
-                            width: '70px',
-                            height: '50px',
-                            objectFit: 'cover',
-                            borderRadius: '4px',
-                            cursor: 'pointer',
-                            flexShrink: 0,
-                            border: activeImgIndex === idx ? '2px solid var(--primary)' : '1px solid var(--border)'
-                          }}
+                          className={`w-[70px] h-[50px] object-cover rounded cursor-pointer shrink-0 ${activeImgIndex === idx ? 'border-2 border-primary' : 'border border-border'}`}
                         />
                       ))}
                     </div>
@@ -579,13 +554,13 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
                 </div>
 
                 <div>
-                  <span style={{ fontSize: '0.8rem', fontWeight: '700', textTransform: 'uppercase', color: 'var(--primary)', letterSpacing: '1px' }}>
+                  <span className="text-[0.8rem] font-bold uppercase text-primary tracking-wide">
                     {selectedCar.year} {selectedCar.make}
                   </span>
-                  <h2 style={{ fontFamily: 'var(--font-title)', fontSize: '1.8rem', fontWeight: '800', margin: '4px 0 12px 0', lineHeight: '1.2' }}>
+                  <h2 className="font-title text-3xl font-extrabold my-1 mb-3 leading-tight">
                     {selectedCar.model}
                   </h2>
-                  <div style={{ fontSize: '1.75rem', fontWeight: '800', color: 'var(--primary)', marginBottom: '16px' }}>
+                  <div className="text-[1.75rem] font-extrabold text-primary mb-4">
                     ${selectedCar.price.toLocaleString()}
                   </div>
 
@@ -598,7 +573,7 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
                     <div><strong>Stock #:</strong> {selectedCar.stockNumber || `AM-${selectedCar.id}`}</div>
                   </div>
 
-                  <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>
+                  <p className="text-[0.88rem] text-text-muted leading-relaxed">
                     {selectedCar.description || 'Pre-owned vehicle in pristine condition. Certified by Auto Maestro technicians.'}
                   </p>
                 </div>
@@ -606,52 +581,50 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
 
               {/* Inquiry / Order Form */}
               <div className="modal-form-box">
-                <h3 style={{ fontFamily: 'var(--font-title)', fontSize: '1.1rem', fontWeight: '800', marginBottom: '14px' }}>
+                <h3 className="font-title text-[1.1rem] font-extrabold mb-3.5">
                   Request Information / Schedule Test Drive
                 </h3>
                 <form onSubmit={handleInquirySubmit} className="modal-form-grid">
-                  <input 
-                    type="text" 
-                    placeholder="Your Full Name *" 
+                  <input
+                    type="text"
+                    placeholder="Your Full Name *"
                     value={inquiryName}
                     onChange={(e) => setInquiryName(e.target.value)}
                     required
-                    style={{ padding: '10px 14px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border)', outline: 'none' }}
+                    className="py-2.5 px-3.5 rounded-sm border border-border outline-none"
                   />
-                  <input 
-                    type="email" 
-                    placeholder="Your Email Address *" 
+                  <input
+                    type="email"
+                    placeholder="Your Email Address *"
                     value={inquiryEmail}
                     onChange={(e) => setInquiryEmail(e.target.value)}
                     required
-                    style={{ padding: '10px 14px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border)', outline: 'none' }}
+                    className="py-2.5 px-3.5 rounded-sm border border-border outline-none"
                   />
-                  <input 
-                    type="tel" 
-                    placeholder="Phone Number" 
+                  <input
+                    type="tel"
+                    placeholder="Phone Number"
                     value={inquiryPhone}
                     onChange={(e) => setInquiryPhone(e.target.value)}
-                    style={{ padding: '10px 14px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border)', outline: 'none' }}
+                    className="py-2.5 px-3.5 rounded-sm border border-border outline-none"
                   />
-                  <input 
-                    type="text" 
-                    disabled 
-                    value={`Vehicle: ${selectedCar.year} ${selectedCar.make} ${selectedCar.model}`} 
-                    style={{ padding: '10px 14px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border)', backgroundColor: 'var(--bg-surface-alt)', opacity: 0.8 }}
+                  <input
+                    type="text"
+                    disabled
+                    value={`Vehicle: ${selectedCar.year} ${selectedCar.make} ${selectedCar.model}`}
+                    className="py-2.5 px-3.5 rounded-sm border border-border bg-surface-alt opacity-80"
                   />
-                  <textarea 
-                    placeholder="Message / Special Requests" 
+                  <textarea
+                    placeholder="Message / Special Requests"
                     value={inquiryMsg}
                     onChange={(e) => setInquiryMsg(e.target.value)}
                     rows="3"
-                    className="modal-form-full"
-                    style={{ padding: '10px 14px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border)', outline: 'none' }}
+                    className="modal-form-full py-2.5 px-3.5 rounded-sm border border-border outline-none"
                   ></textarea>
 
-                  <button 
-                    type="submit" 
-                    className="btn-hero-primary" 
-                    style={{ gridColumn: '1 / -1', justifyContent: 'center', marginTop: '8px' }}
+                  <button
+                    type="submit"
+                    className="btn-hero-primary col-span-full justify-center mt-2"
                   >
                     Submit Availability Inquiry
                   </button>
@@ -664,27 +637,13 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
 
       {/* STICKY COMPARE DRAWER */}
       {selectedCompare.length > 0 && (
-        <div style={{
-          position: 'fixed',
-          bottom: '20px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          zIndex: 1500,
-          backgroundColor: '#0F172A',
-          color: '#FFFFFF',
-          padding: '12px 24px',
-          borderRadius: 'var(--radius-full)',
-          boxShadow: '0 20px 40px rgba(0, 0, 0, 0.4)',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '20px'
-        }}>
-          <div style={{ fontSize: '0.85rem', fontWeight: '700' }}>
+        <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-[1500] bg-slate-900 text-white py-3 px-6 rounded-full shadow-[0_20px_40px_rgba(0,0,0,0.4)] flex items-center gap-5">
+          <div className="text-[0.85rem] font-bold">
             {selectedCompare.length} Vehicle(s) Saved
           </div>
-          <div style={{ display: 'flex', gap: '8px' }}>
+          <div className="flex gap-2">
             {selectedCompare.map(car => (
-              <span key={car.id} style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)', padding: '4px 10px', borderRadius: '50px', fontSize: '0.75rem' }}>
+              <span key={car.id} className="bg-white/15 py-1 px-2.5 rounded-full text-xs">
                 {car.make} {car.model}
               </span>
             ))}

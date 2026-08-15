@@ -134,7 +134,7 @@ export default function ContactForm() {
         </div>
       </div>
 
-      <div className="form-group" style={{ marginTop: '16px' }}>
+      <div className="form-group mt-4">
         <label htmlFor="contactMessage">YOUR MESSAGE *</label>
         <textarea 
           id="contactMessage" 

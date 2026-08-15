@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import { createSessionToken, SESSION_COOKIE_NAME, SESSION_MAX_AGE_SECONDS } from '../../../../lib/auth-helper';
 
 export async function POST(request) {
   try {
@@ -10,10 +11,11 @@ export async function POST(request) {
 
     if (username === expectedUser && password === expectedPass) {
       const cookieStore = cookies();
-      cookieStore.set('auto_maestro_session', 'authenticated', {
+      cookieStore.set(SESSION_COOKIE_NAME, createSessionToken(), {
         path: '/',
-        maxAge: 86400, // 24 hours
-        httpOnly: false, // Kept false so document.cookie can read/clear it on client transitions
+        maxAge: SESSION_MAX_AGE_SECONDS,
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
         sameSite: 'lax',
       });
 

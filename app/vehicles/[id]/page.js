@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import DetailGalleryAndCalculator from './DetailGalleryAndCalculator';
+import SiteHeader from '../../components/SiteHeader';
+import SiteFooter from '../../components/SiteFooter';
 import { readVehicles } from '../../../lib/db-helper';
 
 // Dynamic server-side rendering
@@ -40,9 +42,9 @@ export default function VehicleDetailPage({ params }) {
 
   if (!car) {
     return (
-      <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: 'var(--bg-body)', padding: '40px' }}>
-        <h2 style={{ fontFamily: 'var(--font-title)', fontSize: '2rem', marginBottom: '16px' }}>Vehicle Not Found</h2>
-        <p style={{ color: 'var(--text-muted)', marginBottom: '24px' }}>The vehicle you are looking for may have been sold or removed from our inventory.</p>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-body p-10">
+        <h2 className="font-title text-3xl mb-4">Vehicle Not Found</h2>
+        <p className="text-text-muted mb-6">The vehicle you are looking for may have been sold or removed from our inventory.</p>
         <Link href="/" className="btn-figma-accent">Return to Catalog</Link>
       </div>
     );
@@ -102,25 +104,13 @@ export default function VehicleDetailPage({ params }) {
       />
 
       {/* Header */}
-      <header id="mainHeader" style={{ position: 'relative', background: 'var(--bg-surface)' }}>
-        <div className="container nav-container" style={{ height: '75px' }}>
-          <Link href="/" className="logo-container">
-            <img src="/logo.svg" alt="AUTO MAESTRO LLC Logo" className="brand-logo-img" />
-          </Link>
-          <ul className="nav-links">
-            <li><Link href="/">Home</Link></li>
-            <li><Link href="/#inventaire">Inventory</Link></li>
-            <li><Link href="/#contact">Contact</Link></li>
-          </ul>
-          <Link href="/#inventaire" className="nav-cta">Back to Catalog</Link>
-        </div>
-      </header>
+      <SiteHeader variant="detail" />
 
-      <main style={{ backgroundColor: 'var(--bg-body)', padding: '40px 0 80px 0' }}>
+      <main className="bg-body pt-10 pb-20">
         <div className="container">
-          
+
           {/* Back button */}
-          <Link href="/#inventaire" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: 'var(--text-muted)', fontWeight: '600', marginBottom: '24px', transition: 'var(--transition)' }} className="back-link-hover">
+          <Link href="/#inventaire" className="back-link-hover inline-flex items-center gap-2 no-underline text-text-muted font-semibold mb-6 transition">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18" height="18">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
             </svg>
@@ -134,36 +124,7 @@ export default function VehicleDetailPage({ params }) {
       </main>
 
       {/* Footer */}
-      <footer>
-        <div className="container footer-grid">
-          <div className="footer-brand">
-            <Link href="/" className="logo-container">
-              <img src="/logo-white.svg" alt="AUTO MAESTRO LLC Logo" className="brand-logo-img" />
-            </Link>
-            <p>AUTO MAESTRO LLC is your trusted partner for buying, selling, and financing your next premium or sports vehicle. All our vehicles are meticulously inspected.</p>
-          </div>
-          <div className="footer-links-col">
-            <h4>Navigation</h4>
-            <ul>
-              <li><Link href="/">Home</Link></li>
-              <li><Link href="/#inventaire">Inventory</Link></li>
-              <li><Link href="/#contact">Contact</Link></li>
-            </ul>
-          </div>
-          <div className="footer-links-col">
-            <h4>Legal</h4>
-            <ul>
-              <li><a href="#">Legal Terms</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms of Service</a></li>
-            </ul>
-          </div>
-        </div>
-        <div className="container footer-bottom">
-          <p>&copy; {new Date().getFullYear()} AUTO MAESTRO LLC. All rights reserved.</p>
-          <p>Developed by <span>Makhtar Wade</span></p>
-        </div>
-      </footer>
+      <SiteFooter variant="detail" />
     </>
   );
 }

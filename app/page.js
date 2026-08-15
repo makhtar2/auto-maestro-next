@@ -1,5 +1,7 @@
 import CatalogWrapper from './components/CatalogWrapper';
 import ContactForm from './components/ContactForm';
+import SiteHeader from './components/SiteHeader';
+import SiteFooter from './components/SiteFooter';
 import { readVehicles } from '../lib/db-helper';
 import fs from 'fs';
 import path from 'path';
@@ -26,19 +28,7 @@ export default function Home() {
   return (
     <>
       {/* Sticky Header */}
-      <header id="mainHeader">
-        <div className="container nav-container">
-          <a href="#" className="logo-container">
-            <img src="/logo.svg" alt="AUTO MAESTRO LLC Logo" className="brand-logo-img" />
-          </a>
-          <ul className="nav-links">
-            <li><a href="#accueil">Home</a></li>
-            <li><a href="#inventaire">Inventory</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-          <a href="#inventaire" className="nav-cta">View Inventory</a>
-        </div>
-      </header>
+      <SiteHeader variant="home" />
 
       <main>
         {/* CatalogWrapper encapsulates Hero text, Quick Search Form, Features, Categories and Catalog Grid */}
@@ -118,36 +108,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer>
-        <div className="container footer-grid">
-          <div className="footer-brand">
-            <a href="#" className="logo-container">
-              <img src="/logo-white.svg" alt="AUTO MAESTRO LLC Logo" className="brand-logo-img" />
-            </a>
-            <p>AUTO MAESTRO LLC is your trusted partner for buying, selling, and financing your next premium or sports vehicle. All our vehicles are meticulously inspected.</p>
-          </div>
-          <div className="footer-links-col">
-            <h4>Navigation</h4>
-            <ul>
-              <li><a href="#accueil">Home</a></li>
-              <li><a href="#inventaire">Inventory</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-          </div>
-          <div className="footer-links-col">
-            <h4>Legal</h4>
-            <ul>
-              <li><a href="#">Legal Terms</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms of Service</a></li>
-            </ul>
-          </div>
-        </div>
-        <div className="container footer-bottom">
-          <p>&copy; {new Date().getFullYear()} AUTO MAESTRO LLC. All rights reserved.</p>
-          <p>Developed by <span>Makhtar Wade</span></p>
-        </div>
-      </footer>
+      <SiteFooter variant="home" />
     </>
   );
 }

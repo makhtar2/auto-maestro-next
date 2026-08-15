@@ -4,25 +4,145 @@ import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
+const IconCar = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M3 13l1.5-4.5A2 2 0 0 1 6.4 7h11.2a2 2 0 0 1 1.9 1.5L21 13" />
+    <path d="M3 13h18v4a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-1H6v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-4Z" />
+    <circle cx="7.5" cy="13.5" r="1.5" />
+    <circle cx="16.5" cy="13.5" r="1.5" />
+  </svg>
+);
+
+const IconInbox = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M3 12h4l2 3h6l2-3h4" />
+    <path d="M5.2 6.2 3 12v6a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6l-2.2-5.8A1 1 0 0 0 17.9 5H6.1a1 1 0 0 0-.9 1.2Z" />
+  </svg>
+);
+
+const IconHome = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M3 11.5 12 4l9 7.5" />
+    <path d="M5.5 10v9a1 1 0 0 0 1 1H9a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h2.5a1 1 0 0 0 1-1v-9" />
+  </svg>
+);
+
+const IconLogout = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M9 21H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3" />
+    <path d="M16 17l5-5-5-5" />
+    <path d="M21 12H9" />
+  </svg>
+);
+
+const IconSearch = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <circle cx="11" cy="11" r="7" />
+    <path d="m21 21-4.3-4.3" />
+  </svg>
+);
+
+const IconEye = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" />
+    <circle cx="12" cy="12" r="3" />
+  </svg>
+);
+
+const IconPencil = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M12 20h9" />
+    <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" />
+  </svg>
+);
+
+const IconTrash = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M3 6h18" />
+    <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+    <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
+    <path d="M10 11v6M14 11v6" />
+  </svg>
+);
+
+const IconCheck = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M20 6 9 17l-5-5" />
+  </svg>
+);
+
+const IconArchive = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <rect x="3" y="4" width="18" height="4" rx="1" />
+    <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8" />
+    <path d="M10 13h4" />
+  </svg>
+);
+
+const IconLayers = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="m12 2 9 5-9 5-9-5 9-5Z" />
+    <path d="m3 12 9 5 9-5" />
+    <path d="m3 17 9 5 9-5" />
+  </svg>
+);
+
+const IconWallet = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M3 7a2 2 0 0 1 2-2h13a1 1 0 0 1 1 1v2" />
+    <path d="M3 7v10a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1H6a2 2 0 0 1-2-2Z" />
+    <circle cx="16.5" cy="13.5" r="1.1" fill="currentColor" stroke="none" />
+  </svg>
+);
+
+const IconTrendingUp = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="m3 17 6-6 4 4 8-8" />
+    <path d="M15 7h6v6" />
+  </svg>
+);
+
+const IconBell = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M6 8a6 6 0 0 1 12 0c0 4 1.5 5.5 2 6H4c.5-.5 2-2 2-6Z" />
+    <path d="M10 21a2 2 0 0 0 4 0" />
+  </svg>
+);
+
+const IconPlus = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M12 4v16m8-8H4" />
+  </svg>
+);
+
 export default function AdminDashboard() {
   const [authenticated, setAuthenticated] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
-    const checkAuth = () => {
-      const cookies = document.cookie.split(';');
-      const hasSession = cookies.some(c => c.trim().startsWith('auto_maestro_session=authenticated'));
-      if (!hasSession) {
+    const checkAuth = async () => {
+      try {
+        const res = await fetch('/api/auth/status');
+        const data = await res.json();
+        if (!data.authenticated) {
+          router.push('/admin/login');
+        } else {
+          setAuthenticated(true);
+        }
+      } catch (error) {
+        console.error(error);
         router.push('/admin/login');
-      } else {
-        setAuthenticated(true);
       }
     };
     checkAuth();
   }, [router]);
 
-  const handleSignOut = () => {
-    document.cookie = "auto_maestro_session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+  const handleSignOut = async () => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' });
+    } catch (error) {
+      console.error(error);
+    }
     router.push('/admin/login');
   };
   const [vehicles, setVehicles] = useState([]);
@@ -291,46 +411,33 @@ export default function AdminDashboard() {
 
   if (!authenticated) {
     return (
-      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'var(--bg-body)' }}>
-        <div style={{ color: 'var(--text-muted)', fontWeight: '600', fontFamily: 'var(--font-body)' }}>Verifying authorization...</div>
+      <div className="min-h-screen flex items-center justify-center bg-body">
+        <div className="font-body font-semibold text-text-muted">Verifying authorization...</div>
       </div>
     );
   }
 
+  const pendingCount = inquiries.filter(q => q.status === 'new').length;
+
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: 'var(--bg-body)', padding: '40px 0' }}>
-      <div className="container">
-        
-        {/* Navigation Bar */}
-        <header id="mainHeader" style={{ position: 'relative', background: 'var(--bg-surface)', borderBottom: '1px solid var(--border)', marginBottom: '32px', borderRadius: 'var(--radius)' }}>
-          <div className="container nav-container" style={{ height: '70px', padding: '0 20px' }}>
-            <Link href="/" className="logo-container">
-              <img src="/logo.svg" alt="AUTO MAESTRO LLC Logo" className="brand-logo-img" />
-            </Link>
-            <ul className="nav-links" style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-              <li><Link href="/">Back to Site</Link></li>
-              <li><Link href="/admin" className="active">Admin Dashboard</Link></li>
-              <li>
-                <button 
-                  onClick={handleSignOut}
-                  style={{
-                    background: 'none',
-                    border: '1px solid var(--border)',
-                    padding: '6px 12px',
-                    borderRadius: 'var(--radius-sm)',
-                    cursor: 'pointer',
-                    fontSize: '0.8rem',
-                    fontWeight: '700',
-                    color: 'var(--text-muted)',
-                    transition: 'var(--transition)'
-                  }}
-                >
-                  Sign Out
-                </button>
-              </li>
-            </ul>
-          </div>
-        </header>
+    <div className="admin-app">
+
+      {/* Sticky top bar */}
+      <header className="admin-topbar">
+        <Link href="/" className="admin-topbar-logo">
+          <img src="/logo.svg" alt="AUTO MAESTRO LLC" />
+        </Link>
+        <div className="admin-topbar-actions">
+          <Link href="/" className="admin-icon-btn" aria-label="Back to site" title="Back to site">
+            <IconHome width="18" height="18" />
+          </Link>
+          <button onClick={handleSignOut} className="admin-icon-btn" aria-label="Sign out" title="Sign out">
+            <IconLogout width="18" height="18" />
+          </button>
+        </div>
+      </header>
+
+      <div className="admin-content container">
 
         {/* Dashboard Title */}
         <div className="admin-header">
@@ -338,10 +445,8 @@ export default function AdminDashboard() {
             <h1>Platform Operations</h1>
             <p>Monitor customer inquiries, update showroom appointments, and manage stock inventories.</p>
           </div>
-          <button onClick={handleAddClick} className="btn btn-primary" style={{ display: 'inline-flex', gap: '8px', alignItems: 'center' }}>
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path>
-            </svg>
+          <button onClick={handleAddClick} className="btn btn-primary inline-flex items-center gap-2">
+            <IconPlus width="16" height="16" />
             Add Vehicle
           </button>
         </div>
@@ -349,100 +454,76 @@ export default function AdminDashboard() {
         {/* Metrics Row */}
         <div className="admin-stats-grid">
           <div className="admin-stat-card">
-            <h4>Total Vehicles</h4>
+            <div className="admin-stat-top">
+              <h4>Total Vehicles</h4>
+              <span className="admin-stat-icon"><IconLayers width="14" height="14" /></span>
+            </div>
             <div className="val">{stats.total}</div>
           </div>
           <div className="admin-stat-card">
-            <h4>Inventory Value</h4>
+            <div className="admin-stat-top">
+              <h4>Inventory Value</h4>
+              <span className="admin-stat-icon"><IconWallet width="14" height="14" /></span>
+            </div>
             <div className="val">${stats.totalVal.toLocaleString()}</div>
           </div>
           <div className="admin-stat-card">
-            <h4>Average Price</h4>
+            <div className="admin-stat-top">
+              <h4>Average Price</h4>
+              <span className="admin-stat-icon"><IconTrendingUp width="14" height="14" /></span>
+            </div>
             <div className="val">${stats.avgPrice.toLocaleString()}</div>
           </div>
           <div className="admin-stat-card">
-            <h4>Pending Leads</h4>
-            <div className="val" style={{ color: 'var(--primary)' }}>
-              {inquiries.filter(q => q.status === 'new').length}
+            <div className="admin-stat-top">
+              <h4>Pending Leads</h4>
+              <span className="admin-stat-icon accent"><IconBell width="14" height="14" /></span>
             </div>
+            <div className="val text-primary">{pendingCount}</div>
           </div>
         </div>
 
-        {/* Tabs switcher */}
-        <div className="admin-tabs" style={{ display: 'flex', gap: '8px', borderBottom: '1px solid var(--border)', marginBottom: '24px', paddingBottom: '2px' }}>
-          <button 
-            onClick={() => setActiveTab('inventory')} 
-            className={`admin-tab-btn ${activeTab === 'inventory' ? 'active' : ''}`}
-            style={{
-              background: 'none',
-              border: 'none',
-              padding: '12px 20px',
-              fontSize: '0.95rem',
-              fontWeight: '700',
-              color: activeTab === 'inventory' ? 'var(--primary)' : 'var(--text-muted)',
-              borderBottom: activeTab === 'inventory' ? '3px solid var(--primary)' : '3px solid transparent',
-              cursor: 'pointer',
-              transition: 'var(--transition)'
-            }}
+        {/* Tab bar: fixed bottom nav on mobile, top tabs on desktop */}
+        <nav className="admin-tabbar">
+          <button
+            onClick={() => setActiveTab('inventory')}
+            className={`admin-tabbar-btn ${activeTab === 'inventory' ? 'active' : ''}`}
           >
-            Vehicles Inventory
+            <IconCar width="20" height="20" />
+            <span>Inventory</span>
           </button>
-          <button 
-            onClick={() => setActiveTab('leads')} 
-            className={`admin-tab-btn ${activeTab === 'leads' ? 'active' : ''}`}
-            style={{
-              background: 'none',
-              border: 'none',
-              padding: '12px 20px',
-              fontSize: '0.95rem',
-              fontWeight: '700',
-              color: activeTab === 'leads' ? 'var(--primary)' : 'var(--text-muted)',
-              borderBottom: activeTab === 'leads' ? '3px solid var(--primary)' : '3px solid transparent',
-              cursor: 'pointer',
-              transition: 'var(--transition)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px'
-            }}
+          <button
+            onClick={() => setActiveTab('leads')}
+            className={`admin-tabbar-btn ${activeTab === 'leads' ? 'active' : ''}`}
           >
-            Customer Leads
-            {inquiries.filter(q => q.status === 'new').length > 0 && (
-              <span style={{
-                backgroundColor: 'var(--accent)',
-                color: 'var(--text-main)',
-                fontSize: '0.7rem',
-                padding: '2px 7px',
-                borderRadius: '50px',
-                fontWeight: '800'
-              }}>
-                {inquiries.filter(q => q.status === 'new').length}
-              </span>
-            )}
+            <IconInbox width="20" height="20" />
+            <span>Leads</span>
+            {pendingCount > 0 && <span className="admin-tabbar-badge">{pendingCount}</span>}
           </button>
-        </div>
+        </nav>
 
         {/* Tab CONTENT 1: Inventory Table */}
         {activeTab === 'inventory' && (
           <>
             {/* Filters and List */}
-            <div className="catalog-controls" style={{ display: 'flex', justifyContent: 'space-between', gap: '16px' }}>
-              <div className="search-field" style={{ width: '100%', maxWidth: '400px' }}>
-                <input 
-                  type="text" 
-                  placeholder="Search by make, model, or year..." 
-                  value={searchTerm} 
+            <div className="catalog-controls">
+              <div className="admin-search">
+                <IconSearch width="16" height="16" />
+                <input
+                  type="text"
+                  placeholder="Search by make, model, or year..."
+                  value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  style={{ backgroundColor: 'var(--bg-surface)', padding: '12px 16px' }}
                 />
               </div>
-              <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem', alignSelf: 'center' }}>
+              <div className="admin-results-count">
                 Showing {filteredVehicles.length} of {vehicles.length} vehicles
               </div>
             </div>
 
             <div className="admin-table-container">
               {loading ? (
-                <div style={{ textAlign: 'center', padding: '40px', color: 'var(--text-muted)' }}>Loading...</div>
+                <div className="text-center p-10 text-text-muted">Loading...</div>
               ) : filteredVehicles.length > 0 ? (
                 <table className="admin-table">
                   <thead>
@@ -452,35 +533,41 @@ export default function AdminDashboard() {
                       <th>Price</th>
                       <th>Mileage</th>
                       <th>Fuel / Transmission</th>
-                      <th style={{ textAlign: 'right' }}>Actions</th>
+                      <th className="text-right">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
                     {filteredVehicles.map(car => (
                       <tr key={car.id}>
-                        <td>
+                        <td className="cell-main">
                           <div className="admin-car-info">
                             <img src={car.mainImage} alt={car.model} className="admin-car-thumb" />
                             <div>
                               <div className="admin-car-name">{car.make} {car.model}</div>
-                              <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>ID: {car.id}</div>
+                              <div className="text-xs text-text-dim">ID: {car.id}</div>
                             </div>
                           </div>
                         </td>
-                        <td>{car.year}</td>
-                        <td style={{ fontWeight: '700', color: 'var(--primary)' }}>${car.price.toLocaleString()}</td>
-                        <td>{car.mileage.toLocaleString()} mi</td>
-                        <td>
-                          <div style={{ fontSize: '0.85rem', fontWeight: '500' }}>{car.fuel}</div>
-                          <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{car.transmission}</div>
+                        <td data-label="Year">{car.year}</td>
+                        <td data-label="Price" className="font-bold text-primary">${car.price.toLocaleString()}</td>
+                        <td data-label="Mileage">{car.mileage.toLocaleString()} mi</td>
+                        <td data-label="Fuel / Transmission">
+                          <div>
+                            <div className="text-[0.85rem] font-medium">{car.fuel}</div>
+                            <div className="text-xs text-text-muted">{car.transmission}</div>
+                          </div>
                         </td>
-                        <td>
-                          <div className="admin-actions" style={{ justifyContent: 'flex-end' }}>
-                            <Link href={`/vehicles/${car.id}`} target="_blank" className="btn-edit" style={{ background: 'var(--bg-body)', color: 'var(--text-muted)', marginRight: '6px', textDecoration: 'none', padding: '6px 12px', borderRadius: '4px', fontSize: '0.8rem', fontWeight: '600' }}>
-                              View
+                        <td className="cell-actions">
+                          <div className="admin-actions">
+                            <Link href={`/vehicles/${car.id}`} className="admin-icon-action" aria-label="View listing" title="View listing">
+                              <IconEye width="16" height="16" />
                             </Link>
-                            <button onClick={() => handleEditClick(car)} className="btn-edit">Edit</button>
-                            <button onClick={() => handleDeleteClick(car.id, `${car.make} ${car.model}`)} className="btn-delete">Delete</button>
+                            <button onClick={() => handleEditClick(car)} className="admin-icon-action" aria-label="Edit vehicle" title="Edit vehicle">
+                              <IconPencil width="16" height="16" />
+                            </button>
+                            <button onClick={() => handleDeleteClick(car.id, `${car.make} ${car.model}`)} className="admin-icon-action danger" aria-label="Delete vehicle" title="Delete vehicle">
+                              <IconTrash width="16" height="16" />
+                            </button>
                           </div>
                         </td>
                       </tr>
@@ -488,7 +575,7 @@ export default function AdminDashboard() {
                   </tbody>
                 </table>
               ) : (
-                <div style={{ padding: '40px', textAlign: 'center', color: 'var(--text-muted)' }}>
+                <div className="p-10 text-center text-text-muted">
                   No vehicles matched your search.
                 </div>
               )}
@@ -500,7 +587,7 @@ export default function AdminDashboard() {
         {activeTab === 'leads' && (
           <div className="admin-table-container">
             {loadingInquiries ? (
-              <div style={{ textAlign: 'center', padding: '40px', color: 'var(--text-muted)' }}>Loading leads...</div>
+              <div className="text-center p-10 text-text-muted">Loading leads...</div>
             ) : inquiries.length > 0 ? (
               <table className="admin-table">
                 <thead>
@@ -510,75 +597,79 @@ export default function AdminDashboard() {
                     <th>Appointment Schedule</th>
                     <th>Status</th>
                     <th>Message Details</th>
-                    <th style={{ textAlign: 'right' }}>Actions</th>
+                    <th className="text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {inquiries.map(inq => (
-                    <tr key={inq.id} style={{ backgroundColor: inq.status === 'new' ? 'rgba(79, 70, 229, 0.02)' : 'transparent' }}>
-                      <td>
-                        <div style={{ fontWeight: '700', color: 'var(--text-main)' }}>{inq.name}</div>
-                        <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{inq.email}</div>
-                        <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{inq.phone}</div>
+                    <tr key={inq.id} className={inq.status === 'new' ? 'bg-[rgba(29,97,231,0.03)]' : ''}>
+                      <td className="cell-main">
+                        <div className="font-bold text-text-main">{inq.name}</div>
+                        <div className="text-[0.8rem] text-text-muted">{inq.email}</div>
+                        <div className="text-[0.8rem] text-text-muted">{inq.phone}</div>
                       </td>
-                      <td>
+                      <td data-label="Vehicle">
                         {inq.vehicleId !== 'General Inquiry' ? (
-                          <Link href={`/vehicles/${inq.vehicleId}`} target="_blank" style={{ fontWeight: '600', color: 'var(--primary)', textDecoration: 'underline' }}>
+                          <Link href={`/vehicles/${inq.vehicleId}`} className="font-semibold text-primary underline">
                             {inq.vehicleName}
                           </Link>
                         ) : (
-                          <span style={{ fontStyle: 'italic', color: 'var(--text-dim)' }}>General Contact</span>
+                          <span className="italic text-text-dim">General Contact</span>
                         )}
                       </td>
-                      <td>
+                      <td data-label="Appointment">
                         {inq.date !== 'N/A' ? (
-                          <>
-                            <div style={{ fontWeight: '600' }}>{inq.date}</div>
-                            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>at {inq.time}</div>
-                          </>
+                          <div>
+                            <div className="font-semibold">{inq.date}</div>
+                            <div className="text-[0.8rem] text-text-muted">at {inq.time}</div>
+                          </div>
                         ) : (
-                          <span style={{ color: 'var(--text-dim)' }}>None</span>
+                          <span className="text-text-dim">None</span>
                         )}
                       </td>
-                      <td>
+                      <td data-label="Status">
                         {inq.status === 'new' ? (
-                          <span style={{ backgroundColor: 'rgba(16, 185, 129, 0.12)', color: '#10B981', fontSize: '0.75rem', fontWeight: '800', padding: '4px 10px', borderRadius: '50px', textTransform: 'uppercase' }}>
+                          <span className="bg-emerald-500/10 text-emerald-500 text-xs font-extrabold px-2.5 py-1 rounded-full uppercase">
                             New
                           </span>
                         ) : inq.status === 'contacted' ? (
-                          <span style={{ backgroundColor: 'rgba(79, 70, 229, 0.12)', color: 'var(--primary)', fontSize: '0.75rem', fontWeight: '800', padding: '4px 10px', borderRadius: '50px', textTransform: 'uppercase' }}>
+                          <span className="bg-primary-light text-primary text-xs font-extrabold px-2.5 py-1 rounded-full uppercase">
                             Contacted
                           </span>
                         ) : (
-                          <span style={{ backgroundColor: 'var(--border)', color: 'var(--text-muted)', fontSize: '0.75rem', fontWeight: '800', padding: '4px 10px', borderRadius: '50px', textTransform: 'uppercase' }}>
+                          <span className="bg-border text-text-muted text-xs font-extrabold px-2.5 py-1 rounded-full uppercase">
                             Archived
                           </span>
                         )}
                       </td>
-                      <td style={{ maxWidth: '280px', fontSize: '0.85rem', color: 'var(--text-muted)', whiteSpace: 'normal', wordBreak: 'break-word' }}>
+                      <td data-label="Message" className="max-w-[280px] text-[0.85rem] text-text-muted whitespace-normal break-words">
                         {inq.message}
                       </td>
-                      <td>
-                        <div className="admin-actions" style={{ justifyContent: 'flex-end', gap: '6px' }}>
+                      <td className="cell-actions">
+                        <div className="admin-actions">
                           {inq.status === 'new' && (
-                            <button 
-                              onClick={() => handleUpdateInquiryStatus(inq.id, 'contacted')} 
-                              className="btn-edit" 
-                              style={{ backgroundColor: 'var(--primary)', color: '#fff', border: 'none' }}
+                            <button
+                              onClick={() => handleUpdateInquiryStatus(inq.id, 'contacted')}
+                              className="admin-icon-action primary"
+                              aria-label="Mark as contacted"
+                              title="Mark as contacted"
                             >
-                              Contacted
+                              <IconCheck width="16" height="16" />
                             </button>
                           )}
                           {inq.status === 'contacted' && (
-                            <button 
-                              onClick={() => handleUpdateInquiryStatus(inq.id, 'archived')} 
-                              className="btn-edit"
-                              style={{ backgroundColor: 'var(--text-dim)', color: '#fff', border: 'none' }}
+                            <button
+                              onClick={() => handleUpdateInquiryStatus(inq.id, 'archived')}
+                              className="admin-icon-action"
+                              aria-label="Archive lead"
+                              title="Archive lead"
                             >
-                              Archive
+                              <IconArchive width="16" height="16" />
                             </button>
                           )}
-                          <button onClick={() => handleDeleteInquiry(inq.id)} className="btn-delete">Delete</button>
+                          <button onClick={() => handleDeleteInquiry(inq.id)} className="admin-icon-action danger" aria-label="Delete lead" title="Delete lead">
+                            <IconTrash width="16" height="16" />
+                          </button>
                         </div>
                       </td>
                     </tr>
@@ -586,7 +677,7 @@ export default function AdminDashboard() {
                 </tbody>
               </table>
             ) : (
-              <div style={{ padding: '40px', textAlign: 'center', color: 'var(--text-muted)' }}>
+              <div className="p-10 text-center text-text-muted">
                 No customer leads found.
               </div>
             )}
@@ -597,19 +688,19 @@ export default function AdminDashboard() {
 
       {/* Admin Add/Edit Modal Overlay */}
       {isModalOpen && (
-        <div className="modal active">
-          <div className="modal-content" style={{ maxWidth: '800px' }}>
+        <div className="modal active admin-modal">
+          <div className="modal-content">
             <button onClick={() => setIsModalOpen(false)} className="modal-close">
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18" height="18">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
               </svg>
             </button>
             
-            <div style={{ padding: '24px', borderBottom: '1px solid var(--border)' }}>
-              <h2 style={{ fontFamily: 'var(--font-title)', fontSize: '1.5rem', fontWeight: '800' }}>
+            <div className="p-6 border-b border-border">
+              <h2 className="font-title text-2xl font-extrabold">
                 {editCar ? `Edit details for ${editCar.make} ${editCar.model}` : 'Add Vehicle to Inventory'}
               </h2>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Enter the technical details of the vehicle.</p>
+              <p className="text-text-muted text-[0.85rem]">Enter the technical details of the vehicle.</p>
             </div>
  
             <form onSubmit={handleSubmit}>
@@ -687,45 +778,36 @@ export default function AdminDashboard() {
                 </div>
 
                 {/* Main Image Upload & URL */}
-                <div className="form-group-full" style={{ border: '1px dashed var(--border)', padding: '16px', borderRadius: 'var(--radius-sm)', backgroundColor: 'rgba(0,0,0,0.02)' }}>
-                  <label style={{ fontWeight: '700', marginBottom: '8px', display: 'block' }}>Vehicle Main Photo *</label>
-                  
-                  <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+                <div className="form-group-full border border-dashed border-border p-4 rounded-sm bg-black/[0.02]">
+                  <label className="font-bold mb-2 block">Vehicle Main Photo *</label>
+
+                  <div className="flex gap-4 items-center flex-wrap">
                     {/* Thumbnail Preview */}
                     {formData.mainImage && (
-                      <img 
-                        src={formData.mainImage} 
-                        alt="Preview" 
-                        style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '4px', border: '1px solid var(--border)' }} 
+                      <img
+                        src={formData.mainImage}
+                        alt="Preview"
+                        className="w-20 h-20 object-cover rounded border border-border"
                       />
                     )}
-                    
+
                     {/* File Selector */}
-                    <div style={{ flex: 1, minWidth: '200px' }}>
-                      <input 
-                        type="file" 
-                        accept="image/*" 
-                        onChange={handleImageUpload} 
-                        style={{ display: 'none' }} 
+                    <div className="flex-1 min-w-[200px]">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageUpload}
+                        className="hidden"
                         id="carImageFile"
                         disabled={uploading}
                       />
-                      <label 
-                        htmlFor="carImageFile" 
-                        className="btn btn-secondary" 
-                        style={{ 
-                          display: 'inline-flex', 
-                          alignItems: 'center', 
-                          gap: '8px', 
-                          cursor: uploading ? 'not-allowed' : 'pointer', 
-                          opacity: uploading ? 0.7 : 1,
-                          padding: '10px 16px',
-                          fontSize: '0.85rem'
-                        }}
+                      <label
+                        htmlFor="carImageFile"
+                        className={`btn btn-secondary inline-flex items-center gap-2 py-2.5 px-4 text-[0.85rem] ${uploading ? 'cursor-not-allowed opacity-70' : 'cursor-pointer'}`}
                       >
                         {uploading ? (
                           <>
-                            <span style={{ width: '14px', height: '14px', border: '2px solid currentColor', borderTopColor: 'transparent', borderRadius: '50%', display: 'inline-block', animation: 'spin 0.8s linear infinite' }} />
+                            <span className="w-3.5 h-3.5 border-2 border-current border-t-transparent rounded-full inline-block animate-spin" />
                             Uploading...
                           </>
                         ) : (
@@ -737,22 +819,22 @@ export default function AdminDashboard() {
                           </>
                         )}
                       </label>
-                      <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '6px' }}>
+                      <div className="text-xs text-text-muted mt-1.5">
                         Supports JPG, PNG, WEBP.
                       </div>
                     </div>
                   </div>
 
-                  <div style={{ marginTop: '12px' }}>
-                    <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '4px', display: 'block' }}>Or enter Image URL manually:</label>
-                    <input 
-                      type="url" 
-                      name="mainImage" 
-                      value={formData.mainImage} 
-                      onChange={handleInputChange} 
-                      placeholder="https://images.unsplash.com/photo-..." 
-                      required 
-                      style={{ padding: '8px 12px', fontSize: '0.85rem' }}
+                  <div className="mt-3">
+                    <label className="text-xs text-text-muted mb-1 block">Or enter Image URL manually:</label>
+                    <input
+                      type="url"
+                      name="mainImage"
+                      value={formData.mainImage}
+                      onChange={handleInputChange}
+                      placeholder="https://images.unsplash.com/photo-..."
+                      required
+                      className="py-2 px-3 text-[0.85rem]"
                     />
                   </div>
                 </div>
@@ -795,6 +877,13 @@ export default function AdminDashboard() {
           )}
           <span>{toast.message}</span>
         </div>
+      )}
+
+      {/* Floating action button (mobile) */}
+      {activeTab === 'inventory' && (
+        <button onClick={handleAddClick} className="admin-fab" aria-label="Add vehicle" title="Add vehicle">
+          <IconPlus width="24" height="24" />
+        </button>
       )}
     </div>
   );

@@ -39,57 +39,30 @@ export default function AdminLogin() {
   };
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: 'var(--bg-body)',
-      padding: '20px'
-    }}>
-      <div style={{
-        backgroundColor: 'var(--bg-surface)',
-        border: '1px solid var(--border)',
-        boxShadow: 'var(--shadow-lg)',
-        borderRadius: 'var(--radius)',
-        padding: '40px',
-        width: '100%',
-        maxWidth: '420px',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '24px'
-      }}>
+    <div className="min-h-screen flex items-center justify-center bg-body p-5">
+      <div className="w-full max-w-[420px] flex flex-col gap-6 rounded bg-surface border border-border p-10 shadow-lg">
         {/* Brand Header */}
-        <div style={{ textAlign: 'center' }}>
+        <div className="text-center">
           <Link href="/">
-            <img src="/logo.svg" alt="Auto Maestro Logo" style={{ height: '40px', margin: '0 auto 12px auto', display: 'block' }} />
+            <img src="/logo.svg" alt="Auto Maestro Logo" className="mx-auto mb-3 block h-10" />
           </Link>
-          <h2 style={{ fontFamily: 'var(--font-title)', fontSize: '1.35rem', fontWeight: '800', color: 'var(--text-main)' }}>
+          <h2 className="font-title text-[1.35rem] font-extrabold text-text-main">
             Operations Terminal
           </h2>
-          <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '4px' }}>
+          <p className="mt-1 text-[0.8rem] text-text-muted">
             Authorized personnel access only.
           </p>
         </div>
 
         {error && (
-          <div style={{
-            backgroundColor: 'rgba(239, 68, 68, 0.1)',
-            border: '1px solid #EF4444',
-            color: '#EF4444',
-            padding: '12px',
-            borderRadius: '6px',
-            fontSize: '0.85rem',
-            textAlign: 'center',
-            fontWeight: '600'
-          }}>
+          <div className="rounded-md border border-red-500 bg-red-500/10 p-3 text-center text-[0.85rem] font-semibold text-red-500">
             {error}
           </div>
         )}
 
-        <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        <form onSubmit={handleLogin} className="flex flex-col gap-4">
           <div className="form-group">
-            <label htmlFor="loginUser" style={{ fontSize: '0.85rem', fontWeight: '600' }}>Username</label>
+            <label htmlFor="loginUser" className="text-[0.85rem] font-semibold">Username</label>
             <input
               type="text"
               id="loginUser"
@@ -97,12 +70,12 @@ export default function AdminLogin() {
               onChange={(e) => setUsername(e.target.value)}
               placeholder="Enter your username"
               required
-              style={{ padding: '12px', borderRadius: 'var(--radius-sm)' }}
+              className="rounded-sm p-3"
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="loginPass" style={{ fontSize: '0.85rem', fontWeight: '600' }}>Password</label>
+            <label htmlFor="loginPass" className="text-[0.85rem] font-semibold">Password</label>
             <input
               type="password"
               id="loginPass"
@@ -110,30 +83,21 @@ export default function AdminLogin() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
               required
-              style={{ padding: '12px', borderRadius: 'var(--radius-sm)' }}
+              className="rounded-sm p-3"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="btn-search-full"
-            style={{
-              backgroundColor: 'var(--primary)',
-              color: '#fff',
-              padding: '14px',
-              fontWeight: '700',
-              marginTop: '8px',
-              border: 'none',
-              cursor: 'pointer'
-            }}
+            className="mt-2 w-full rounded-sm border-none bg-primary p-3.5 font-bold text-white cursor-pointer transition disabled:cursor-not-allowed disabled:opacity-70 hover:bg-primary-hover"
           >
             {loading ? 'Authenticating...' : 'Sign In'}
           </button>
         </form>
 
-        <div style={{ textAlign: 'center', borderTop: '1px solid var(--border)', paddingTop: '16px' }}>
-          <Link href="/" style={{ fontSize: '0.85rem', color: 'var(--text-muted)', textDecoration: 'none', fontWeight: '600' }} className="back-link-hover">
+        <div className="border-t border-border pt-4 text-center">
+          <Link href="/" className="text-[0.85rem] font-semibold text-text-muted no-underline hover:text-primary">
             Return to Homepage
           </Link>
         </div>
