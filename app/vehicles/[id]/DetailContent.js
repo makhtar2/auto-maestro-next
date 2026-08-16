@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-export default function DetailGalleryAndCalculator({ car }) {
+export default function DetailContent({ car }) {
   const [activeImgIndex, setActiveImgIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('specs'); // 'specs', 'description', 'features'

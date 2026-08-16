@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import DetailGalleryAndCalculator from './DetailGalleryAndCalculator';
+import DetailContent from './DetailContent';
 import SiteHeader from '../../components/SiteHeader';
 import SiteFooter from '../../components/SiteFooter';
 import { readVehicles } from '../../../lib/db-helper';
@@ -118,7 +118,7 @@ export default function VehicleDetailPage({ params }) {
           </Link>
 
           {/* Page Layout Grid */}
-          <DetailGalleryAndCalculator car={car} />
+          <DetailContent car={car} />
 
         </div>
       </main>
