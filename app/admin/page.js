@@ -338,6 +338,11 @@ export default function AdminDashboard() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!formData.mainImage) {
+      triggerToast('Please upload a vehicle photo before saving.', true);
+      return;
+    }
+
     // Prepare features array
     const features = formData.featuresText
       ? formData.featuresText.split(',').map(f => f.trim()).filter(Boolean)
@@ -349,7 +354,7 @@ export default function AdminDashboard() {
       price: parseInt(formData.price),
       mileage: parseInt(formData.mileage),
       features,
-      images: [formData.mainImage || 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80'] // Fallback
+      images: [formData.mainImage]
     };
 
     try {
@@ -823,19 +828,6 @@ export default function AdminDashboard() {
                         Supports JPG, PNG, WEBP.
                       </div>
                     </div>
-                  </div>
-
-                  <div className="mt-3">
-                    <label className="text-xs text-text-muted mb-1 block">Or enter Image URL manually:</label>
-                    <input
-                      type="url"
-                      name="mainImage"
-                      value={formData.mainImage}
-                      onChange={handleInputChange}
-                      placeholder="https://images.unsplash.com/photo-..."
-                      required
-                      className="py-2 px-3 text-[0.85rem]"
-                    />
                   </div>
                 </div>
 
