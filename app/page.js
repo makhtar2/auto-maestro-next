@@ -22,9 +22,10 @@ export default async function Home() {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "AUTO MAESTRO LLC",
+    "name": "Auto Maestro",
+    "alternateName": ["automaestro", "AutoMaestro", "AUTO MAESTRO LLC", "Auto Maestro Cars"],
     "url": "https://www.automaestrocars.com",
-    "description": "Certified Prestige, Sport, and Luxury Vehicles Dealership.",
+    "description": "Official Auto Maestro Dealership - Certified Prestige, Sport, and Luxury Vehicles.",
     "potentialAction": {
       "@type": "SearchAction",
       "target": "https://www.automaestrocars.com/#inventaire",
@@ -35,7 +36,9 @@ export default async function Home() {
   const dealerSchema = {
     "@context": "https://schema.org",
     "@type": "AutoDealer",
-    "name": "AUTO MAESTRO LLC",
+    "name": "Auto Maestro",
+    "legalName": "AUTO MAESTRO LLC",
+    "alternateName": ["automaestro", "AutoMaestro", "Auto Maestro Cars", "Auto Maestro Dealership"],
     "image": "https://www.automaestrocars.com/hero-custom.jpg",
     "logo": "https://www.automaestrocars.com/logo.svg",
     "@id": "https://www.automaestrocars.com/#dealer",
