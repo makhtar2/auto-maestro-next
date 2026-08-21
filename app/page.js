@@ -18,8 +18,69 @@ export default async function Home() {
   const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'contact@automaestrocars.com';
   const contactPhone = process.env.NEXT_PUBLIC_CONTACT_PHONE || '+1 (513) 555-0199';
 
+  // Schema.org JSON-LD for Google Search Rich Results
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "AUTO MAESTRO LLC",
+    "url": "https://www.automaestrocars.com",
+    "description": "Certified Prestige, Sport, and Luxury Vehicles Dealership.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://www.automaestrocars.com/#inventaire",
+      "query-input": "required name=search_term_string"
+    }
+  };
+
+  const dealerSchema = {
+    "@context": "https://schema.org",
+    "@type": "AutoDealer",
+    "name": "AUTO MAESTRO LLC",
+    "image": "https://www.automaestrocars.com/hero-custom.jpg",
+    "logo": "https://www.automaestrocars.com/logo.svg",
+    "@id": "https://www.automaestrocars.com/#dealer",
+    "url": "https://www.automaestrocars.com",
+    "telephone": contactPhone,
+    "email": contactEmail,
+    "priceRange": "$$$$",
+    "currenciesAccepted": "USD",
+    "paymentAccepted": "Cash, Credit Card, Wire Transfer, Financing",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "AUTO MAESTRO LLC Main Showroom",
+      "addressLocality": "Showroom Center",
+      "addressRegion": "US",
+      "postalCode": "45202",
+      "addressCountry": "US"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "18:30"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "09:00",
+        "closes": "17:00"
+      }
+    ]
+  };
+
   return (
     <>
+      {/* Search Engine Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(dealerSchema) }}
+      />
+
       {/* Sticky Header */}
       <SiteHeader variant="home" />
 

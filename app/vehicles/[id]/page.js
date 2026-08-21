@@ -24,15 +24,40 @@ export async function generateMetadata({ params }) {
   if (!car) {
     return {
       title: 'Vehicle Not Found | Auto Maestro LLC',
+      robots: { index: false, follow: true }
     };
   }
+
+  const title = `${car.year} ${car.make} ${car.model} for Sale | AUTO MAESTRO LLC`;
+  const description = `Buy this certified ${car.year} ${car.make} ${car.model} in ${car.color || 'pristine condition'} with only ${car.mileage.toLocaleString()} miles. Price: $${car.price.toLocaleString()}. Book a test drive today.`;
+  const url = `https://www.automaestrocars.com/vehicles/${car.id}`;
+  const images = car.images && car.images.length > 0 ? car.images : [car.mainImage];
+
   return {
-    title: `${car.year} ${car.make} ${car.model} | Auto Maestro LLC`,
-    description: `Buy the ${car.year} ${car.make} ${car.model} with ${car.mileage.toLocaleString()} mi. Specs: ${car.engine}, ${car.transmission}, ${car.fuel}. Contact Auto Maestro for a test drive.`,
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
       title: `${car.year} ${car.make} ${car.model} - $${car.price.toLocaleString()}`,
-      description: car.description,
-      images: [{ url: car.mainImage }],
+      description,
+      url,
+      type: 'article',
+      siteName: 'AUTO MAESTRO LLC',
+      images: images.map(img => ({
+        url: img,
+        width: 1200,
+        height: 630,
+        alt: `${car.year} ${car.make} ${car.model}`,
+      })),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [car.mainImage],
+      creator: '@automaestrocars',
     }
   };
 }
@@ -40,13 +65,12 @@ export async function generateMetadata({ params }) {
 export default async function VehicleDetailPage({ params }) {
   const car = await getVehicle(params.id);
 
-
   if (!car) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-body p-10">
         <h2 className="font-title text-3xl mb-4">Vehicle Not Found</h2>
         <p className="text-text-muted mb-6">The vehicle you are looking for may have been sold or removed from our inventory.</p>
-        <Link href="/" className="btn-figma-accent">Return to Catalog</Link>
+        <Link href="/" className="btn-hero-primary">Return to Catalog</Link>
       </div>
     );
   }
@@ -54,10 +78,14 @@ export default async function VehicleDetailPage({ params }) {
   // Create JSON-LD schema structured data for Google Search
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Car",
+    "@type": ["Car", "Product"],
     "name": `${car.year} ${car.make} ${car.model}`,
-    "image": car.images || [car.mainImage],
+    "image": car.images && car.images.length > 0 ? car.images : [car.mainImage],
     "description": car.description,
+    "vehicleIdentificationNumber": car.vin || undefined,
+    "sku": car.stockNumber || `AM-${car.id.toUpperCase()}`,
+    "color": car.color || undefined,
+    "vehicleInteriorColor": car.interior || undefined,
     "brand": {
       "@type": "Brand",
       "name": car.make
@@ -68,7 +96,7 @@ export default async function VehicleDetailPage({ params }) {
     "fuelType": car.fuel,
     "vehicleEngine": {
       "@type": "EngineSpecification",
-      "name": car.engine
+      "name": car.engine || "Factory Engine"
     },
     "mileageFromOdometer": {
       "@type": "QuantitativeValue",
@@ -81,15 +109,17 @@ export default async function VehicleDetailPage({ params }) {
       "price": car.price.toString(),
       "itemCondition": "https://schema.org/UsedCondition",
       "availability": "https://schema.org/InStock",
+      "url": `https://www.automaestrocars.com/vehicles/${car.id}`,
       "seller": {
         "@type": "AutoDealer",
         "name": "AUTO MAESTRO LLC",
+        "url": "https://www.automaestrocars.com",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "AUTO MAESTRO LLC Showroom",
-          "addressLocality": "USA",
+          "streetAddress": "AUTO MAESTRO LLC Main Showroom",
+          "addressLocality": "Showroom Center",
           "addressRegion": "US",
-          "postalCode": "00000",
+          "postalCode": "45202",
           "addressCountry": "US"
         }
       }

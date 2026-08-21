@@ -2,8 +2,16 @@ import SiteHeader from '../components/SiteHeader';
 import SiteFooter from '../components/SiteFooter';
 
 export const metadata = {
-  title: 'Legal Terms | Auto Maestro LLC',
-  description: 'Legal terms and conditions governing the use of the Auto Maestro LLC website and services.',
+  title: 'Legal Terms & Conditions | Auto Maestro LLC',
+  description: 'Legal terms and conditions governing vehicle sales, appointments, and showroom services at Auto Maestro LLC.',
+  alternates: {
+    canonical: 'https://www.automaestrocars.com/legal-terms',
+  },
+  openGraph: {
+    title: 'Legal Terms & Conditions | Auto Maestro LLC',
+    description: 'Legal terms and conditions governing vehicle sales, appointments, and showroom services at Auto Maestro LLC.',
+    url: 'https://www.automaestrocars.com/legal-terms',
+  }
 };
 
 export default function LegalTermsPage() {

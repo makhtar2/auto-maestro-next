@@ -3,7 +3,15 @@ import SiteFooter from '../components/SiteFooter';
 
 export const metadata = {
   title: 'Terms of Service | Auto Maestro LLC',
-  description: 'Terms of service for scheduling test drives and requesting quotes through Auto Maestro LLC.',
+  description: 'Terms of service for scheduling test drives, vehicle reservations, and requesting quotes through Auto Maestro LLC.',
+  alternates: {
+    canonical: 'https://www.automaestrocars.com/terms-of-service',
+  },
+  openGraph: {
+    title: 'Terms of Service | Auto Maestro LLC',
+    description: 'Terms of service for scheduling test drives, vehicle reservations, and requesting quotes through Auto Maestro LLC.',
+    url: 'https://www.automaestrocars.com/terms-of-service',
+  }
 };
 
 export default function TermsOfServicePage() {

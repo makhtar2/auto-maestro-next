@@ -3,7 +3,15 @@ import SiteFooter from '../components/SiteFooter';
 
 export const metadata = {
   title: 'Privacy Policy | Auto Maestro LLC',
-  description: 'How Auto Maestro LLC collects, uses, and protects your personal information.',
+  description: 'How Auto Maestro LLC collects, uses, protects, and respects your personal and inquiry data.',
+  alternates: {
+    canonical: 'https://www.automaestrocars.com/privacy-policy',
+  },
+  openGraph: {
+    title: 'Privacy Policy | Auto Maestro LLC',
+    description: 'How Auto Maestro LLC collects, uses, protects, and respects your personal and inquiry data.',
+    url: 'https://www.automaestrocars.com/privacy-policy',
+  }
 };
 
 export default function PrivacyPolicyPage() {
