@@ -491,10 +491,25 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
                   </div>
                 );
               })
+            ) : vehicles.length === 0 ? (
+              <div className="no-results col-span-full text-center py-20 px-6 rounded-lg bg-surface border border-border">
+                <div className="w-16 h-16 rounded-full bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4">
+                  <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                  </svg>
+                </div>
+                <h3 className="font-title text-2xl font-bold mb-2">Inventory Updating</h3>
+                <p className="text-text-muted max-w-md mx-auto mb-6">
+                  Our showroom inventory is currently being updated with new premium arrivals. Contact our concierge team or check back shortly.
+                </p>
+                <a href="#contact" className="btn-hero-primary mx-auto inline-flex">
+                  Contact Sales Concierge
+                </a>
+              </div>
             ) : (
               <div className="no-results col-span-full text-center py-16 px-6">
-                <h3>No Vehicles Found</h3>
-                <p>Try clearing your active filters to see all available inventory.</p>
+                <h3 className="font-title text-2xl font-bold mb-2">No Vehicles Matched Your Search</h3>
+                <p className="text-text-muted mb-6">Try clearing your active filters to see all available inventory.</p>
                 <button
                   onClick={() => {
                     setActiveCategory('all');
