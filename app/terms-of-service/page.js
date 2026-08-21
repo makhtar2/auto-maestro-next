@@ -39,7 +39,7 @@ export default function TermsOfServicePage() {
 
             <section>
               <h2 className="font-title text-xl font-bold mb-2">5. Contact</h2>
-              <p>For questions about these terms, contact us at <a href="mailto:contact@automaestro.com" className="text-primary underline">contact@automaestro.com</a>.</p>
+              <p>For questions about these terms, contact us at <a href="mailto:contact@automaestrocars.com" className="text-primary underline">contact@automaestrocars.com</a>.</p>
             </section>
           </div>
         </div>

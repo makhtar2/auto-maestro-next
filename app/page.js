@@ -2,28 +2,21 @@ import CatalogWrapper from './components/CatalogWrapper';
 import ContactForm from './components/ContactForm';
 import SiteHeader from './components/SiteHeader';
 import SiteFooter from './components/SiteFooter';
-import { readVehicles } from '../lib/db-helper';
-import fs from 'fs';
-import path from 'path';
+import { getVehiclesAsync } from '../lib/db-helper';
 
 // Force dynamic rendering so modifications in /admin are immediate
 export const revalidate = 0;
 
-export default function Home() {
-  try {
-    const src = '/home/almuxtaar/.gemini/antigravity/brain/9506d595-cf6d-4390-a261-dd6c79c5e0d0/.tempmediaStorage/media_9506d595-cf6d-4390-a261-dd6c79c5e0d0_1786738869211.jpg';
-    const dest = path.join(process.cwd(), 'public', 'hero-custom.jpg');
-    if (fs.existsSync(src)) {
-      fs.copyFileSync(src, dest);
-    }
-  } catch (e) {}
-
+export default async function Home() {
   let vehicles = [];
   try {
-    vehicles = readVehicles();
+    vehicles = await getVehiclesAsync();
   } catch (error) {
     console.error('Error loading vehicles on page load:', error);
   }
+
+  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'contact@automaestrocars.com';
+  const contactPhone = process.env.NEXT_PUBLIC_CONTACT_PHONE || '+1 (513) 555-0199';
 
   return (
     <>
@@ -66,7 +59,7 @@ export default function Home() {
                   </div>
                   <div className="info-card-content">
                     <h5>Phone & Email</h5>
-                    <p>+1 (513) 555-0199 | contact@automaestro.com</p>
+                    <p>{contactPhone} | {contactEmail}</p>
                   </div>
                 </div>
 
@@ -112,3 +105,4 @@ export default function Home() {
     </>
   );
 }
+

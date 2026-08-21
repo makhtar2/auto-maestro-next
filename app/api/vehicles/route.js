@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
 import { checkAuth } from '../../../lib/auth-helper';
-import { readVehicles, writeVehicles } from '../../../lib/db-helper';
+import { getVehiclesAsync, writeVehiclesAsync } from '../../../lib/db-helper';
 
 export async function GET() {
   try {
-    const vehicles = readVehicles();
+    const vehicles = await getVehiclesAsync();
     return NextResponse.json(vehicles);
   } catch (error) {
     console.error('API GET Error:', error);
@@ -18,7 +18,7 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
     const body = await request.json();
-    const vehicles = readVehicles();
+    const vehicles = await getVehiclesAsync();
     
     const newVehicle = {
       id: 'v' + Date.now(),
@@ -27,19 +27,21 @@ export async function POST(request) {
       year: parseInt(body.year) || new Date().getFullYear(),
       price: parseInt(body.price) || 0,
       mileage: parseInt(body.mileage) || 0,
-      transmission: body.transmission || 'Automatique',
-      fuel: body.fuel || 'Essence',
+      transmission: body.transmission || 'Automatic',
+      fuel: body.fuel || 'Gasoline',
       engine: body.engine || '',
       color: body.color || '',
       interior: body.interior || '',
+      vin: body.vin || '',
+      stockNumber: body.stockNumber || '',
       mainImage: body.mainImage || 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80',
-      images: Array.isArray(body.images) ? body.images : [body.mainImage || 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80'],
+      images: Array.isArray(body.images) && body.images.length > 0 ? body.images : [body.mainImage || 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80'],
       features: Array.isArray(body.features) ? body.features : [],
       description: body.description || ''
     };
     
     vehicles.unshift(newVehicle); // Add to the top
-    writeVehicles(vehicles);
+    await writeVehiclesAsync(vehicles);
     
     return NextResponse.json(newVehicle, { status: 201 });
   } catch (error) {
@@ -47,3 +49,4 @@ export async function POST(request) {
     return NextResponse.json({ error: 'Failed to save data' }, { status: 500 });
   }
 }
+

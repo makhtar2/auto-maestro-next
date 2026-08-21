@@ -1,11 +1,11 @@
 import './globals.css';
 
 export const metadata = {
-  metadataBase: new URL('https://auto-maestro-next.vercel.app'),
-  title: "AUTO MAESTRO LLC | Véhicules de Prestige & Sport",
-  description: "Découvrez le catalogue exclusif de véhicules certifiés et de prestige chez AUTO MAESTRO LLC. Berlines de luxe, sportives et SUV haut de gamme.",
-  keywords: "Auto Maestro, véhicules de prestige, berline de luxe, voiture de sport, concessionnaire automobile",
-  authors: [{ name: "Makhtar Wade" }],
+  metadataBase: new URL('https://www.automaestrocars.com'),
+  title: "AUTO MAESTRO LLC | Prestige & Sport Vehicles",
+  description: "Explore the exclusive catalog of certified prestige and sports vehicles at AUTO MAESTRO LLC. Luxury sedans, supercars, and premium SUVs.",
+  keywords: "Auto Maestro, prestige vehicles, luxury cars, sports cars, certified auto dealer, automaestrocars",
+  authors: [{ name: "AUTO MAESTRO LLC" }],
   robots: {
     index: true,
     follow: true,
@@ -18,9 +18,9 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: "AUTO MAESTRO LLC | Véhicules de Prestige & Sport",
-    description: "Découvrez notre inventaire exclusif de véhicules de prestige et de sport inspectés et certifiés.",
-    url: 'https://auto-maestro-next.vercel.app',
+    title: "AUTO MAESTRO LLC | Prestige & Sport Vehicles",
+    description: "Explore our exclusive inventory of inspected and certified prestige and sports vehicles.",
+    url: 'https://www.automaestrocars.com',
     siteName: 'AUTO MAESTRO LLC',
     images: [
       {
@@ -30,13 +30,13 @@ export const metadata = {
         alt: 'AUTO MAESTRO LLC Premium Fleet',
       },
     ],
-    locale: 'fr_FR',
+    locale: 'en_US',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: "AUTO MAESTRO LLC | Véhicules de Prestige & Sport",
-    description: "Découvrez notre catalogue exclusif de véhicules haut de gamme.",
+    title: "AUTO MAESTRO LLC | Prestige & Sport Vehicles",
+    description: "Explore our exclusive catalog of luxury and performance vehicles.",
     images: ['/hero-custom.jpg'],
   },
 };

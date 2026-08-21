@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { checkAuth } from '../../../lib/auth-helper';
-import { readInquiries, writeInquiries } from '../../../lib/db-helper';
+import { getInquiriesAsync, writeInquiriesAsync } from '../../../lib/db-helper';
 
 function escapeHtml(value) {
   return String(value ?? '').replace(/[&<>"']/g, (char) => ({
@@ -17,7 +17,7 @@ export async function GET() {
   if (!checkAuth()) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
-  const inquiries = readInquiries();
+  const inquiries = await getInquiriesAsync();
   // Sort by date (newest first)
   inquiries.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   return NextResponse.json(inquiries);
@@ -33,7 +33,7 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Name and Email are required fields.' }, { status: 400 });
     }
 
-    const inquiries = readInquiries();
+    const inquiries = await getInquiriesAsync();
     const newInquiry = {
       id: 'INQ-' + Date.now() + '-' + Math.floor(Math.random() * 1000),
       name,
@@ -49,7 +49,7 @@ export async function POST(request) {
     };
 
     inquiries.push(newInquiry);
-    writeInquiries(inquiries);
+    await writeInquiriesAsync(inquiries);
 
     // Send instant email notification if RESEND_API_KEY is configured
     if (process.env.RESEND_API_KEY) {
@@ -60,7 +60,7 @@ export async function POST(request) {
         const safeVehicleName = escapeHtml(vehicleName);
         const safeDate = escapeHtml(date);
         const safeTime = escapeHtml(time);
-        const safeMessage = escapeHtml(message || 'Aucun message particulier.');
+        const safeMessage = escapeHtml(message || 'No specific message provided.');
 
         await fetch('https://api.resend.com/emails', {
           method: 'POST',
@@ -70,42 +70,42 @@ export async function POST(request) {
           },
           body: JSON.stringify({
             from: process.env.EMAIL_FROM || 'Auto Maestro <onboarding@resend.dev>',
-            to: [process.env.ADMIN_EMAIL || 'contact@automaestro.com'],
-            subject: `🚘 Demande de contact : ${safeName} (${vehicleName !== 'N/A' ? safeVehicleName : 'Général'})`,
+            to: [process.env.ADMIN_EMAIL || 'contact@automaestrocars.com'],
+            subject: `🚘 Customer Lead: ${safeName} (${vehicleName !== 'N/A' ? safeVehicleName : 'General Inquiry'})`,
             html: `
               <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; color: #0f172a;">
                 <div style="background-color: #1d61e7; padding: 20px; text-align: center; color: #ffffff;">
                   <h2 style="margin: 0; font-size: 20px;">AUTO MAESTRO LLC</h2>
-                  <p style="margin: 5px 0 0 0; font-size: 14px; opacity: 0.9;">Nouvelle demande d'information client</p>
+                  <p style="margin: 5px 0 0 0; font-size: 14px; opacity: 0.9;">New Customer Inquiry / Test Drive Request</p>
                 </div>
                 <div style="padding: 24px; background-color: #ffffff;">
-                  <p style="font-size: 16px;"><strong>Bonjour,</strong></p>
-                  <p>Un prospect a rempli le formulaire de contact sur le site Auto Maestro :</p>
+                  <p style="font-size: 16px;"><strong>Hello Team,</strong></p>
+                  <p>A customer has submitted an inquiry on the Auto Maestro website:</p>
 
                   <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
                     <tr>
-                      <td style="padding: 8px 12px; background: #f8fafc; font-weight: bold; width: 140px;">Nom complet :</td>
+                      <td style="padding: 8px 12px; background: #f8fafc; font-weight: bold; width: 140px;">Full Name:</td>
                       <td style="padding: 8px 12px; background: #f8fafc;">${safeName}</td>
                     </tr>
                     <tr>
-                      <td style="padding: 8px 12px; font-weight: bold;">Email :</td>
+                      <td style="padding: 8px 12px; font-weight: bold;">Email:</td>
                       <td style="padding: 8px 12px;"><a href="mailto:${safeEmail}">${safeEmail}</a></td>
                     </tr>
                     <tr>
-                      <td style="padding: 8px 12px; background: #f8fafc; font-weight: bold;">Téléphone :</td>
+                      <td style="padding: 8px 12px; background: #f8fafc; font-weight: bold;">Phone:</td>
                       <td style="padding: 8px 12px; background: #f8fafc;">${safePhone}</td>
                     </tr>
                     <tr>
-                      <td style="padding: 8px 12px; font-weight: bold;">Véhicule :</td>
+                      <td style="padding: 8px 12px; font-weight: bold;">Vehicle:</td>
                       <td style="padding: 8px 12px; color: #1d61e7; font-weight: bold;">${safeVehicleName}</td>
                     </tr>
                     <tr>
-                      <td style="padding: 8px 12px; background: #f8fafc; font-weight: bold;">Date & Heure :</td>
-                      <td style="padding: 8px 12px; background: #f8fafc;">${safeDate} à ${safeTime}</td>
+                      <td style="padding: 8px 12px; background: #f8fafc; font-weight: bold;">Schedule:</td>
+                      <td style="padding: 8px 12px; background: #f8fafc;">${safeDate !== 'N/A' ? `${safeDate} at ${safeTime}` : 'None requested'}</td>
                     </tr>
                   </table>
 
-                  <p style="font-weight: bold; margin-bottom: 8px;">Message du client :</p>
+                  <p style="font-weight: bold; margin-bottom: 8px;">Customer Message:</p>
                   <div style="background-color: #f1f5f9; padding: 16px; border-left: 4px solid #1d61e7; border-radius: 4px; font-style: italic;">
                     "${safeMessage}"
                   </div>
@@ -125,3 +125,4 @@ export async function POST(request) {
     return NextResponse.json({ error: 'Failed to submit inquiry.' }, { status: 500 });
   }
 }
+

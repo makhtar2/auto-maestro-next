@@ -155,6 +155,7 @@ export default function AdminDashboard() {
   // Modal states
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editCar, setEditCar] = useState(null); // If null, we are adding. If object, we are editing.
+  const [saving, setSaving] = useState(false);
   
   // Form State
   const [formData, setFormData] = useState({
@@ -168,19 +169,23 @@ export default function AdminDashboard() {
     engine: '',
     color: '',
     interior: '',
+    vin: '',
+    stockNumber: '',
     mainImage: '',
+    images: [],
     description: '',
     featuresText: '' // Comma-separated list for features
   });
 
   const [toast, setToast] = useState({ show: false, error: false, message: '' });
-  const [uploading, setUploading] = useState(false);
+  const [uploadingMain, setUploadingMain] = useState(false);
+  const [uploadingGallery, setUploadingGallery] = useState(false);
 
-  const handleImageUpload = async (e) => {
+  const handleMainImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
-    setUploading(true);
+    setUploadingMain(true);
     const uploadData = new FormData();
     uploadData.append('file', file);
 
@@ -191,8 +196,12 @@ export default function AdminDashboard() {
       });
       const data = await res.json();
       if (res.ok && data.url) {
-        setFormData(prev => ({ ...prev, mainImage: data.url }));
-        triggerToast('Image uploaded successfully!');
+        setFormData(prev => ({ 
+          ...prev, 
+          mainImage: data.url,
+          images: prev.images.includes(data.url) ? prev.images : [data.url, ...prev.images]
+        }));
+        triggerToast('Main photo uploaded successfully!');
       } else {
         triggerToast(data.error || 'Failed to upload image.', true);
       }
@@ -200,8 +209,47 @@ export default function AdminDashboard() {
       console.error(error);
       triggerToast('Error uploading image.', true);
     } finally {
-      setUploading(false);
+      setUploadingMain(false);
     }
+  };
+
+  const handleGalleryImageUpload = async (e) => {
+    const files = Array.from(e.target.files || []);
+    if (files.length === 0) return;
+
+    setUploadingGallery(true);
+
+    try {
+      for (const file of files) {
+        const uploadData = new FormData();
+        uploadData.append('file', file);
+
+        const res = await fetch('/api/upload', {
+          method: 'POST',
+          body: uploadData
+        });
+        const data = await res.json();
+        if (res.ok && data.url) {
+          setFormData(prev => ({
+            ...prev,
+            images: [...prev.images, data.url]
+          }));
+        }
+      }
+      triggerToast('Gallery photos uploaded successfully!');
+    } catch (error) {
+      console.error(error);
+      triggerToast('Error uploading gallery photos.', true);
+    } finally {
+      setUploadingGallery(false);
+    }
+  };
+
+  const removeGalleryImage = (indexToRemove) => {
+    setFormData(prev => ({
+      ...prev,
+      images: prev.images.filter((_, idx) => idx !== indexToRemove)
+    }));
   };
 
   // Fetch all vehicles
@@ -282,7 +330,10 @@ export default function AdminDashboard() {
       engine: '',
       color: '',
       interior: '',
+      vin: '',
+      stockNumber: '',
       mainImage: '',
+      images: [],
       description: '',
       featuresText: ''
     });
@@ -303,7 +354,10 @@ export default function AdminDashboard() {
       engine: car.engine || '',
       color: car.color || '',
       interior: car.interior || '',
+      vin: car.vin || '',
+      stockNumber: car.stockNumber || '',
       mainImage: car.mainImage || '',
+      images: Array.isArray(car.images) ? car.images : (car.mainImage ? [car.mainImage] : []),
       description: car.description || '',
       featuresText: (car.features || []).join(', ')
     });
@@ -339,22 +393,29 @@ export default function AdminDashboard() {
     e.preventDefault();
 
     if (!formData.mainImage) {
-      triggerToast('Please upload a vehicle photo before saving.', true);
+      triggerToast('Please upload a vehicle main photo before saving.', true);
       return;
     }
+
+    setSaving(true);
 
     // Prepare features array
     const features = formData.featuresText
       ? formData.featuresText.split(',').map(f => f.trim()).filter(Boolean)
       : [];
 
+    const galleryImages = formData.images && formData.images.length > 0
+      ? formData.images
+      : [formData.mainImage];
+
     const requestBody = {
       ...formData,
-      year: parseInt(formData.year),
-      price: parseInt(formData.price),
-      mileage: parseInt(formData.mileage),
+      year: parseInt(formData.year) || new Date().getFullYear(),
+      price: parseInt(formData.price) || 0,
+      mileage: parseInt(formData.mileage) || 0,
       features,
-      images: [formData.mainImage]
+      mainImage: formData.mainImage,
+      images: galleryImages
     };
 
     try {
@@ -377,6 +438,8 @@ export default function AdminDashboard() {
     } catch (error) {
       console.error(error);
       triggerToast('Server error during submission.', true);
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -770,30 +833,48 @@ export default function AdminDashboard() {
                   </select>
                 </div>
 
-                {/* Color */}
+                {/* Exterior Color */}
                 <div className="form-group">
                   <label>Exterior Color</label>
-                  <input type="text" name="color" value={formData.color} onChange={handleInputChange} placeholder="e.g. Deep Black" />
+                  <input type="text" name="color" value={formData.color} onChange={handleInputChange} placeholder="e.g. Deep Black Metallic" />
                 </div>
 
                 {/* Interior */}
                 <div className="form-group">
                   <label>Interior Finish</label>
-                  <input type="text" name="interior" value={formData.interior} onChange={handleInputChange} placeholder="e.g. Red Alcantara Leather" />
+                  <input type="text" name="interior" value={formData.interior} onChange={handleInputChange} placeholder="e.g. Black Leather / Carbon" />
+                </div>
+
+                {/* VIN */}
+                <div className="form-group">
+                  <label>VIN (Chassis Number)</label>
+                  <input type="text" name="vin" value={formData.vin} onChange={handleInputChange} placeholder="e.g. 1FMCU9GD5LUB12345" />
+                </div>
+
+                {/* Stock Number */}
+                <div className="form-group">
+                  <label>Stock Number</label>
+                  <input type="text" name="stockNumber" value={formData.stockNumber} onChange={handleInputChange} placeholder="e.g. AM-2026-01" />
                 </div>
 
                 {/* Main Image Upload & URL */}
                 <div className="form-group-full border border-dashed border-border p-4 rounded-sm bg-black/[0.02]">
-                  <label className="font-bold mb-2 block">Vehicle Main Photo *</label>
+                  <div className="flex justify-between items-center mb-2">
+                    <label className="font-bold block m-0">Vehicle Main Cover Photo *</label>
+                    <span className="text-xs text-text-muted">Primary display photo</span>
+                  </div>
 
                   <div className="flex gap-4 items-center flex-wrap">
                     {/* Thumbnail Preview */}
                     {formData.mainImage && (
-                      <img
-                        src={formData.mainImage}
-                        alt="Preview"
-                        className="w-20 h-20 object-cover rounded border border-border"
-                      />
+                      <div className="relative group">
+                        <img
+                          src={formData.mainImage}
+                          alt="Main Preview"
+                          className="w-24 h-20 object-cover rounded border border-border"
+                        />
+                        <span className="absolute bottom-1 left-1 bg-black/70 text-[10px] text-white px-1 rounded font-bold">COVER</span>
+                      </div>
                     )}
 
                     {/* File Selector */}
@@ -801,52 +882,117 @@ export default function AdminDashboard() {
                       <input
                         type="file"
                         accept="image/*"
-                        onChange={handleImageUpload}
+                        onChange={handleMainImageUpload}
                         className="hidden"
                         id="carImageFile"
-                        disabled={uploading}
+                        disabled={uploadingMain || saving}
                       />
                       <label
                         htmlFor="carImageFile"
-                        className={`btn btn-secondary inline-flex items-center gap-2 py-2.5 px-4 text-[0.85rem] ${uploading ? 'cursor-not-allowed opacity-70' : 'cursor-pointer'}`}
+                        className={`btn btn-secondary inline-flex items-center gap-2 py-2 px-4 text-[0.85rem] ${uploadingMain || saving ? 'cursor-not-allowed opacity-70' : 'cursor-pointer'}`}
                       >
-                        {uploading ? (
+                        {uploadingMain ? (
                           <>
                             <span className="w-3.5 h-3.5 border-2 border-current border-t-transparent rounded-full inline-block animate-spin" />
-                            Uploading...
+                            Uploading to Cloud...
                           </>
                         ) : (
                           <>
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
                             </svg>
-                            Choose Photo File
+                            {formData.mainImage ? 'Change Main Photo' : 'Upload Main Photo'}
                           </>
                         )}
                       </label>
                       <div className="text-xs text-text-muted mt-1.5">
-                        Supports JPG, PNG, WEBP.
+                        High resolution JPG, PNG, WEBP automatically optimized on Cloudinary.
                       </div>
                     </div>
                   </div>
                 </div>
 
+                {/* Additional Gallery Photos */}
+                <div className="form-group-full border border-dashed border-border p-4 rounded-sm bg-black/[0.02]">
+                  <div className="flex justify-between items-center mb-2">
+                    <label className="font-bold block m-0">Additional Gallery Photos</label>
+                    <span className="text-xs text-text-muted">{formData.images.length} photos selected</span>
+                  </div>
+
+                  {formData.images.length > 0 && (
+                    <div className="flex gap-2 flex-wrap mb-3">
+                      {formData.images.map((imgUrl, idx) => (
+                        <div key={idx} className="relative group w-16 h-16 rounded border border-border overflow-hidden">
+                          <img src={imgUrl} alt={`Gallery ${idx + 1}`} className="w-full h-full object-cover" />
+                          <button
+                            type="button"
+                            onClick={() => removeGalleryImage(idx)}
+                            className="absolute top-0 right-0 bg-red-600 text-white p-0.5 rounded-bl hover:bg-red-700 transition"
+                            title="Remove photo"
+                          >
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="12" height="12">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  <input
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    onChange={handleGalleryImageUpload}
+                    className="hidden"
+                    id="carGalleryFiles"
+                    disabled={uploadingGallery || saving}
+                  />
+                  <label
+                    htmlFor="carGalleryFiles"
+                    className={`btn btn-secondary inline-flex items-center gap-2 py-1.5 px-3 text-[0.8rem] ${uploadingGallery || saving ? 'cursor-not-allowed opacity-70' : 'cursor-pointer'}`}
+                  >
+                    {uploadingGallery ? (
+                      <>
+                        <span className="w-3 h-3 border-2 border-current border-t-transparent rounded-full inline-block animate-spin" />
+                        Uploading gallery...
+                      </>
+                    ) : (
+                      <>
+                        <IconPlus width="14" height="14" />
+                        Add Gallery Photos
+                      </>
+                    )}
+                  </label>
+                </div>
+
                 {/* Description */}
                 <div className="form-group-full">
                   <label>Vehicle Description *</label>
-                  <textarea name="description" value={formData.description} onChange={handleInputChange} rows="4" placeholder="Enter marketing details..." required></textarea>
+                  <textarea name="description" value={formData.description} onChange={handleInputChange} rows="4" placeholder="Enter detailed vehicle condition, history, performance specs..." required></textarea>
                 </div>
 
                 {/* Features (comma separated) */}
                 <div className="form-group-full">
-                  <label>Key Features (comma-separated)</label>
-                  <input type="text" name="featuresText" value={formData.featuresText} onChange={handleInputChange} placeholder="e.g. Backup Camera, GPS, Heated Seats" />
+                  <label>Key Features & Options (comma-separated)</label>
+                  <input type="text" name="featuresText" value={formData.featuresText} onChange={handleInputChange} placeholder="e.g. Carbon Ceramic Brakes, Apple CarPlay, Panoramic Sunroof, Heated Seats" />
                 </div>
 
                 {/* Action buttons */}
                 <div className="admin-modal-footer">
-                  <button type="button" onClick={() => setIsModalOpen(false)} className="btn btn-secondary">Cancel</button>
-                  <button type="submit" className="btn btn-primary">Save Vehicle</button>
+                  <button type="button" onClick={() => setIsModalOpen(false)} className="btn btn-secondary" disabled={saving}>
+                    Cancel
+                  </button>
+                  <button type="submit" className="btn btn-primary inline-flex items-center gap-2" disabled={saving || uploadingMain || uploadingGallery}>
+                    {saving ? (
+                      <>
+                        <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full inline-block animate-spin" />
+                        Saving Vehicle...
+                      </>
+                    ) : (
+                      editCar ? 'Update Vehicle' : 'Publish to Inventory'
+                    )}
+                  </button>
                 </div>
 
               </div>

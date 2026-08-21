@@ -2,15 +2,15 @@ import Link from 'next/link';
 import DetailContent from './DetailContent';
 import SiteHeader from '../../components/SiteHeader';
 import SiteFooter from '../../components/SiteFooter';
-import { readVehicles } from '../../../lib/db-helper';
+import { getVehiclesAsync } from '../../../lib/db-helper';
 
 // Dynamic server-side rendering
 export const revalidate = 0;
 
 // Read vehicle data
-function getVehicle(id) {
+async function getVehicle(id) {
   try {
-    const vehicles = readVehicles();
+    const vehicles = await getVehiclesAsync();
     return vehicles.find(v => v.id.toString() === id.toString()) || null;
   } catch (error) {
     console.error('Error loading vehicle details:', error);
@@ -20,7 +20,7 @@ function getVehicle(id) {
 
 // Generate dynamic SEO metadata for each vehicle
 export async function generateMetadata({ params }) {
-  const car = getVehicle(params.id);
+  const car = await getVehicle(params.id);
   if (!car) {
     return {
       title: 'Vehicle Not Found | Auto Maestro LLC',
@@ -37,8 +37,9 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function VehicleDetailPage({ params }) {
-  const car = getVehicle(params.id);
+export default async function VehicleDetailPage({ params }) {
+  const car = await getVehicle(params.id);
+
 
   if (!car) {
     return (

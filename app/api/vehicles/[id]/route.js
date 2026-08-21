@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
 import { checkAuth } from '../../../../lib/auth-helper';
-import { readVehicles, writeVehicles } from '../../../../lib/db-helper';
+import { getVehiclesAsync, writeVehiclesAsync } from '../../../../lib/db-helper';
 
 export async function GET(request, { params }) {
   try {
     const id = params.id;
-    const vehicles = readVehicles();
+    const vehicles = await getVehiclesAsync();
     const vehicle = vehicles.find(v => v.id === id);
     
     if (!vehicle) {
@@ -26,7 +26,7 @@ export async function PUT(request, { params }) {
     }
     const id = params.id;
     const body = await request.json();
-    const vehicles = readVehicles();
+    const vehicles = await getVehiclesAsync();
     const index = vehicles.findIndex(v => v.id === id);
     
     if (index === -1) {
@@ -45,14 +45,16 @@ export async function PUT(request, { params }) {
       engine: body.engine || vehicles[index].engine,
       color: body.color || vehicles[index].color,
       interior: body.interior || vehicles[index].interior,
+      vin: body.vin !== undefined ? body.vin : (vehicles[index].vin || ''),
+      stockNumber: body.stockNumber !== undefined ? body.stockNumber : (vehicles[index].stockNumber || ''),
       mainImage: body.mainImage || vehicles[index].mainImage,
-      images: Array.isArray(body.images) ? body.images : vehicles[index].images,
+      images: Array.isArray(body.images) && body.images.length > 0 ? body.images : (vehicles[index].images || [body.mainImage || vehicles[index].mainImage]),
       features: Array.isArray(body.features) ? body.features : vehicles[index].features,
       description: body.description || vehicles[index].description,
       id // Keep original ID
     };
     
-    writeVehicles(vehicles);
+    await writeVehiclesAsync(vehicles);
     
     return NextResponse.json(vehicles[index]);
   } catch (error) {
@@ -67,7 +69,7 @@ export async function DELETE(request, { params }) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
     const id = params.id;
-    let vehicles = readVehicles();
+    let vehicles = await getVehiclesAsync();
     
     const index = vehicles.findIndex(v => v.id === id);
     if (index === -1) {
@@ -75,7 +77,7 @@ export async function DELETE(request, { params }) {
     }
     
     vehicles = vehicles.filter(v => v.id !== id);
-    writeVehicles(vehicles);
+    await writeVehiclesAsync(vehicles);
     
     return NextResponse.json({ success: true, message: 'Vehicle deleted successfully' });
   } catch (error) {
@@ -83,3 +85,4 @@ export async function DELETE(request, { params }) {
     return NextResponse.json({ error: 'Failed to delete data' }, { status: 500 });
   }
 }
+

@@ -44,7 +44,7 @@ export default function LegalTermsPage() {
 
             <section>
               <h2 className="font-title text-xl font-bold mb-2">6. Contact</h2>
-              <p>Questions about these terms can be sent to <a href="mailto:contact@automaestro.com" className="text-primary underline">contact@automaestro.com</a>.</p>
+              <p>Questions about these terms can be sent to <a href="mailto:contact@automaestrocars.com" className="text-primary underline">contact@automaestrocars.com</a>.</p>
             </section>
           </div>
         </div>

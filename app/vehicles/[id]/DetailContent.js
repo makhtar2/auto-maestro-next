@@ -90,7 +90,7 @@ export default function DetailContent({ car }) {
             {car.make} {car.model}
           </h1>
           <p className="detail-subtitle-meta">
-            VIN: <strong>{car.vin || '1FMCU9GD5LUB12345'}</strong> • Stock #: <strong>{car.stockNumber || `AM-${car.id}`}</strong>
+            {car.vin ? <>VIN: <strong>{car.vin}</strong> • </> : null}Stock #: <strong>{car.stockNumber || `AM-${car.id.toUpperCase()}`}</strong>
           </p>
         </div>
 
