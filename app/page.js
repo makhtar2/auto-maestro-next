@@ -107,7 +107,7 @@ export default async function Home() {
                     </svg>
                   </div>
                   <div className="info-card-content">
-                    <h5>Address</h5>
+                    <h3 className="font-bold text-base">Address</h3>
                     <p>AUTO MAESTRO LLC Main Showroom</p>
                   </div>
                 </div>
@@ -119,7 +119,7 @@ export default async function Home() {
                     </svg>
                   </div>
                   <div className="info-card-content">
-                    <h5>Phone & Email</h5>
+                    <h3 className="font-bold text-base">Phone & Email</h3>
                     <p>{contactPhone} | {contactEmail}</p>
                   </div>
                 </div>
@@ -131,7 +131,7 @@ export default async function Home() {
                     </svg>
                   </div>
                   <div className="info-card-content">
-                    <h5>Showroom Hours</h5>
+                    <h3 className="font-bold text-base">Showroom Hours</h3>
                     <p>Mon - Fri: 9:00 AM - 6:30 PM | Sat: 9:00 AM - 5:00 PM</p>
                   </div>
                 </div>

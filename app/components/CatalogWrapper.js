@@ -317,8 +317,10 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
             {/* Structured Search Controls */}
             <div className="search-console-grid">
               <div className="console-field">
-                <span className="console-field-label">MAKE</span>
+                <label htmlFor="filterMakeSelect" className="console-field-label">MAKE</label>
                 <select 
+                  id="filterMakeSelect"
+                  aria-label="Filter by vehicle make"
                   value={filterMake} 
                   onChange={(e) => { setFilterMake(e.target.value); setFilterModel(''); }}
                   className="console-select"
@@ -331,8 +333,10 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
               </div>
 
               <div className="console-field">
-                <span className="console-field-label">MODEL</span>
+                <label htmlFor="filterModelSelect" className="console-field-label">MODEL</label>
                 <select 
+                  id="filterModelSelect"
+                  aria-label="Filter by vehicle model"
                   value={filterModel} 
                   onChange={(e) => setFilterModel(e.target.value)}
                   className="console-select"
@@ -345,8 +349,10 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
               </div>
 
               <div className="console-field">
-                <span className="console-field-label">MAX PRICE</span>
+                <label htmlFor="filterPriceSelect" className="console-field-label">MAX PRICE</label>
                 <select 
+                  id="filterPriceSelect"
+                  aria-label="Filter by maximum price"
                   value={filterPrice} 
                   onChange={(e) => setFilterPrice(e.target.value)}
                   className="console-select"
@@ -359,8 +365,10 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
               </div>
 
               <button 
+                type="button"
                 onClick={scrollToInventory} 
                 className="btn-console-submit"
+                aria-label="Search matching vehicles"
               >
                 <span>Search ({filteredVehicles.length})</span>
                 <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -386,32 +394,42 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
 
           {/* Sub-Category Pills */}
           <div className="category-tabs-container mb-8">
-            <ul className="category-tabs">
+            <ul className="category-tabs" role="tablist">
               <li 
+                role="tab"
+                aria-selected={activeCategory === 'all'}
                 className={`category-tab ${activeCategory === 'all' ? 'active' : ''}`}
                 onClick={() => setActiveCategory('all')}
               >
                 All Vehicles ({categoryCounts.all})
               </li>
               <li 
+                role="tab"
+                aria-selected={activeCategory === 'sport'}
                 className={`category-tab ${activeCategory === 'sport' ? 'active' : ''}`}
                 onClick={() => setActiveCategory('sport')}
               >
                 Sports ({categoryCounts.sport})
               </li>
               <li 
+                role="tab"
+                aria-selected={activeCategory === 'berline'}
                 className={`category-tab ${activeCategory === 'berline' ? 'active' : ''}`}
                 onClick={() => setActiveCategory('berline')}
               >
                 Sedans ({categoryCounts.berline})
               </li>
               <li 
+                role="tab"
+                aria-selected={activeCategory === 'suv'}
                 className={`category-tab ${activeCategory === 'suv' ? 'active' : ''}`}
                 onClick={() => setActiveCategory('suv')}
               >
                 SUVs & 4x4s ({categoryCounts.suv})
               </li>
               <li 
+                role="tab"
+                aria-selected={activeCategory === 'electric'}
                 className={`category-tab ${activeCategory === 'electric' ? 'active' : ''}`}
                 onClick={() => setActiveCategory('electric')}
               >
@@ -430,7 +448,11 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
                     <div className="card-img-box">
                       <img 
                         src={car.mainImage || 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&auto=format&fit=crop&q=80'} 
-                        alt={`${car.make} ${car.model}`}
+                        alt={`${car.year} ${car.make} ${car.model}`}
+                        width="380"
+                        height="240"
+                        loading="lazy"
+                        decoding="async"
                         referrerPolicy="no-referrer"
                         onError={(e) => {
                           e.target.onerror = null;
@@ -442,6 +464,7 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
                       <button 
                         className={`card-fav-btn ${isFavorited ? 'active' : ''}`}
                         onClick={(e) => handleToggleCompare(car, e)}
+                        aria-label={isFavorited ? `Remove ${car.make} ${car.model} from saved` : `Save ${car.make} ${car.model} to compare`}
                         title={isFavorited ? 'Remove from saved' : 'Save vehicle / Compare'}
                       >
                         <svg width="18" height="18" fill={isFavorited ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
@@ -544,7 +567,11 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
                 <div>
                   <img 
                     src={selectedCar.images && selectedCar.images[activeImgIndex] ? selectedCar.images[activeImgIndex] : (selectedCar.mainImage || 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&auto=format&fit=crop&q=80')} 
-                    alt={selectedCar.model}
+                    alt={`${selectedCar.year} ${selectedCar.make} ${selectedCar.model}`}
+                    width="500"
+                    height="320"
+                    loading="lazy"
+                    decoding="async"
                     referrerPolicy="no-referrer"
                     onError={(e) => {
                       e.target.onerror = null;
@@ -558,7 +585,11 @@ export default function CatalogWrapper({ initialVehicles = [] }) {
                         <img
                           key={idx}
                           src={img}
-                          alt="thumb"
+                          alt={`${selectedCar.model} thumbnail ${idx + 1}`}
+                          width="70"
+                          height="50"
+                          loading="lazy"
+                          decoding="async"
                           referrerPolicy="no-referrer"
                           onClick={() => setActiveImgIndex(idx)}
                           className={`w-[70px] h-[50px] object-cover rounded cursor-pointer shrink-0 ${activeImgIndex === idx ? 'border-2 border-primary' : 'border border-border'}`}

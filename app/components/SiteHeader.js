@@ -19,8 +19,8 @@ export default function SiteHeader({ variant = 'home' }) {
   return (
     <header id="mainHeader" className={isHome ? undefined : 'relative bg-surface'}>
       <div className={`container nav-container ${isHome ? '' : 'h-[75px]'}`}>
-        <Link href={logoHref} className="logo-container">
-          <img src="/logo.svg" alt="AUTO MAESTRO LLC Logo" className="brand-logo-img" />
+        <Link href={logoHref} className="logo-container" aria-label="AUTO MAESTRO LLC Home">
+          <img src="/logo.svg" alt="AUTO MAESTRO LLC Logo" width="160" height="36" className="brand-logo-img" />
         </Link>
 
         <ul className="nav-links">

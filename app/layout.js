@@ -1,4 +1,19 @@
+import { Plus_Jakarta_Sans, Inter } from 'next/font/google';
 import './globals.css';
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-title',
+  weight: ['400', '500', '600', '700', '800'],
+});
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-body',
+  weight: ['400', '500', '600', '700'],
+});
 
 export const viewport = {
   themeColor: '#0b0f19',
@@ -94,10 +109,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" className={`${plusJakartaSans.variable} ${inter.variable}`}>
+      <head>
+        <link rel="preload" as="image" href="/hero-custom.jpg" type="image/jpeg" fetchPriority="high" />
+      </head>
+      <body className="font-body">
         {children}
       </body>
     </html>
   );
 }
+

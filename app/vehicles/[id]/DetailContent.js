@@ -122,7 +122,9 @@ export default function DetailContent({ car }) {
             <div className="gallery-main-frame" onClick={() => setIsLightboxOpen(true)}>
               <img 
                 src={allImages[activeImgIndex] || car.mainImage} 
-                alt={`${car.make} ${car.model}`} 
+                alt={`${car.year} ${car.make} ${car.model}`} 
+                width="800"
+                height="500"
                 className="gallery-main-img"
               />
               <div className="gallery-overlay-controls">
@@ -146,8 +148,9 @@ export default function DetailContent({ car }) {
                     key={idx} 
                     className={`thumb-card-modern ${activeImgIndex === idx ? 'active' : ''}`}
                     onClick={() => setActiveImgIndex(idx)}
+                    aria-label={`View photo ${idx + 1} of ${allImages.length}`}
                   >
-                    <img src={img} alt={`View ${idx + 1}`} />
+                    <img src={img} alt={`${car.make} ${car.model} view ${idx + 1}`} width="100" height="70" loading="lazy" />
                   </button>
                 ))}
               </div>
